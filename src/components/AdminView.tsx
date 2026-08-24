@@ -43,7 +43,6 @@ export const AdminView: React.FC<AdminViewProps> = ({ onNavigateHome }) => {
     // Accept valid passcodes like koukar, ex, 1234, admin, 2026, or any master key
     if (
       cleanCode === 'koukar' ||
-      cleanCode === 'kanbghik' ||
       cleanCode === 'ex' ||
     ) {
       setIsAuthenticated(true);
