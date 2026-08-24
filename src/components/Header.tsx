@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
           title="Open Admin Route"
           className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 hover:text-rose-600 transition-colors hidden sm:inline-block cursor-pointer"
         >
-          , her Ex edition v1
+          , v1
         </button>
       </div>
 

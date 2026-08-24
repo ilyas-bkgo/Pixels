@@ -201,7 +201,7 @@ export function downloadPatternPdf(
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(14);
-  doc.text("koukar's Craft , her Ex edition v1 • Pattern Guide", margin, 14);
+  doc.text("koukar's Craft v1 • Pattern Guide", margin, 14);
 
   // Metadata summary
   doc.setTextColor(51, 65, 85);

@@ -1,6 +1,6 @@
 {
-  "name": "koukar's Craft , her Ex edition v1",
-  "description": "Artisan fuse bead pattern designer & maker studio — koukar's Craft , her Ex edition v1",
+  "name": "koukar's Craft v1",
+  "description": "Artisan fuse bead pattern designer & maker studio — koukar's Craft v1",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

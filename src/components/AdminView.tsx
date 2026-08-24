@@ -221,7 +221,7 @@ export const AdminView: React.FC<AdminViewProps> = ({ onNavigateHome }) => {
         {/* Subtle Brand Tag */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black text-xs font-mono uppercase tracking-[0.25em] shadow-xs mb-6">
           <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 animate-pulse" />
-          <span>koukar's Craft • her Ex edition v1</span>
+          <span>koukar's Craft • v1</span>
         </div>
 
         {/* The Star Dedication Card - Clean, Focused, Minimalist */}
@@ -363,7 +363,7 @@ export const AdminView: React.FC<AdminViewProps> = ({ onNavigateHome }) => {
 
       {/* Footer */}
       <footer className="border-t border-black/10 py-4 px-6 text-center text-[10px] font-mono text-gray-400">
-        koukar's Craft , her Ex edition v1 • Authenticated Private Route
+        koukar's Craft v1 • Authenticated Private Route
       </footer>
     </div>
   );
