@@ -71,17 +71,17 @@ export const TextToolBar: React.FC<TextToolBarProps> = ({
   };
 
   return (
-    <div className="absolute top-3 left-1/2 -translate-x-1/2 z-40 bg-white border-2 border-black rounded-xl shadow-2xl p-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 select-none max-w-[95vw]">
+    <div className="absolute top-3 left-1/2 -translate-x-1/2 z-40 bg-white border-2 border-pink-800 rounded-xl shadow-2xl p-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 select-none max-w-[95vw]">
       {/* Icon and Title */}
-      <div className="flex items-center gap-2 pr-2 sm:border-r border-black/20">
-        <div className="p-1.5 bg-black text-amber-300 rounded-lg">
+      <div className="flex items-center gap-2 pr-2 sm:border-r border-pink-800/20">
+        <div className="p-1.5 bg-pink-800 text-pink-300 rounded-lg">
           <Type className="w-4 h-4" />
         </div>
         <div>
-          <div className="text-[9px] uppercase font-mono font-bold text-gray-500">
+          <div className="text-[9px] uppercase font-mono font-bold text-pink-500">
             Pixel Typography
           </div>
-          <div className="text-xs font-bold text-black whitespace-nowrap">
+          <div className="text-xs font-bold text-pink-900 whitespace-nowrap">
             Text Stamp Tool
           </div>
         </div>
@@ -100,7 +100,7 @@ export const TextToolBar: React.FC<TextToolBarProps> = ({
               text: e.target.value,
             })
           }
-          className="px-3 py-1.5 border border-black/30 rounded-lg text-xs font-mono font-bold w-48 sm:w-56 focus:outline-none focus:border-black uppercase tracking-wider"
+          className="px-3 py-1.5 border border-pink-800/30 rounded-lg text-xs font-mono font-bold w-48 sm:w-56 focus:outline-none focus:border-pink-800 uppercase tracking-wider"
           autoFocus
         />
 
@@ -113,7 +113,7 @@ export const TextToolBar: React.FC<TextToolBarProps> = ({
               fontStyle: e.target.value as PixelFontStyle,
             })
           }
-          className="px-2 py-1.5 border border-black/30 rounded-lg text-xs font-mono bg-white cursor-pointer focus:outline-none focus:border-black"
+          className="px-2 py-1.5 border border-pink-800/30 rounded-lg text-xs font-mono bg-white cursor-pointer focus:outline-none focus:border-pink-800"
         >
           <option value="classic_5x7">5×7 Classic</option>
           <option value="mini_3x5">3×5 Mini</option>
@@ -127,7 +127,7 @@ export const TextToolBar: React.FC<TextToolBarProps> = ({
           type="button"
           onClick={handleCenterOnBoard}
           disabled={!textConfig.text.trim()}
-          className="px-2.5 py-1.5 bg-gray-100 hover:bg-gray-200 disabled:opacity-30 border border-black/20 rounded-lg text-[10px] font-mono font-bold text-black transition-colors flex items-center gap-1 cursor-pointer"
+          className="px-2.5 py-1.5 bg-rose-100 hover:bg-rose-200 disabled:opacity-30 border border-pink-800/20 rounded-lg text-[10px] font-mono font-bold text-pink-900 transition-colors flex items-center gap-1 cursor-pointer"
           title="Center text horizontally and vertically on canvas"
         >
           <AlignCenter className="w-3 h-3" /> Center
@@ -137,7 +137,7 @@ export const TextToolBar: React.FC<TextToolBarProps> = ({
           type="button"
           onClick={handleBottomBanner}
           disabled={!textConfig.text.trim()}
-          className="px-2.5 py-1.5 bg-gray-100 hover:bg-gray-200 disabled:opacity-30 border border-black/20 rounded-lg text-[10px] font-mono font-bold text-black transition-colors flex items-center gap-1 cursor-pointer"
+          className="px-2.5 py-1.5 bg-rose-100 hover:bg-rose-200 disabled:opacity-30 border border-pink-800/20 rounded-lg text-[10px] font-mono font-bold text-pink-900 transition-colors flex items-center gap-1 cursor-pointer"
           title="Place text at bottom edge as a banner"
         >
           <ArrowDown className="w-3 h-3" /> Bottom
@@ -145,14 +145,14 @@ export const TextToolBar: React.FC<TextToolBarProps> = ({
       </div>
 
       {/* Info indicator */}
-      <div className="hidden md:flex items-center gap-1.5 text-[9.5px] font-mono text-gray-500 border-l border-black/20 pl-2">
+      <div className="hidden md:flex items-center gap-1.5 text-[9.5px] font-mono text-pink-500 border-l border-pink-800/20 pl-2">
         <span>Click anywhere on the board to stamp</span>
       </div>
 
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="p-1 hover:bg-gray-100 rounded-lg text-gray-600 hover:text-black cursor-pointer ml-auto"
+        className="p-1 hover:bg-rose-100 rounded-lg text-pink-600 hover:text-pink-900 cursor-pointer ml-auto"
       >
         <X className="w-4 h-4" />
       </button>

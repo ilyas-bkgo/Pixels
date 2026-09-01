@@ -135,24 +135,24 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs select-none">
-      <div className="bg-white rounded-xl shadow-2xl border-2 border-black w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-pink-800/60 backdrop-blur-xs select-none">
+      <div className="bg-white rounded-xl shadow-2xl border-2 border-pink-800 w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-black bg-white flex items-center justify-between">
+        <div className="p-5 sm:p-6 border-b border-pink-800 bg-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-black text-white rounded-lg">
-              <Boxes className="w-5 h-5 text-amber-300" />
+            <div className="p-2.5 bg-pink-800 text-white rounded-lg">
+              <Boxes className="w-5 h-5 text-pink-300" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase font-mono font-bold tracking-widest text-gray-500">
+                <span className="text-[10px] uppercase font-mono font-bold tracking-widest text-pink-500">
                   {BRAND_INFO[brand]?.name} • Stock Manager
                 </span>
-                <span className="text-[9.5px] font-mono font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+                <span className="text-[9.5px] font-mono font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-900 border border-pink-300">
                   {inStockColorsCount}/{totalColorsCount} colors owned
                 </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-serif italic font-bold text-black">
+              <h2 className="text-xl sm:text-2xl font-serif italic font-bold text-pink-900">
                 Physical Bead Inventory & Stock Tracker
               </h2>
             </div>
@@ -160,17 +160,17 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 border border-transparent hover:border-black rounded-lg transition-colors cursor-pointer"
+            className="p-2 hover:bg-rose-100 border border-transparent hover:border-pink-800 rounded-lg transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5 text-black" />
+            <X className="w-5 h-5 text-pink-900" />
           </button>
         </div>
 
         {/* Global Owned-Color Conversion Lock Banner */}
-        <div className="px-6 py-3.5 bg-amber-50 border-b border-black flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="px-6 py-3.5 bg-pink-50 border-b border-pink-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <Sparkles className="w-4 h-4 text-amber-700 shrink-0" />
-            <div className="text-xs text-amber-950">
+            <Sparkles className="w-4 h-4 text-pink-700 shrink-0" />
+            <div className="text-xs text-pink-950">
               <span className="font-bold">Conversion Restriction: </span>
               <span>
                 {restrictToOwned
@@ -180,7 +180,7 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-xs font-bold font-mono text-black cursor-pointer bg-white px-3 py-1.5 rounded-lg border border-black shadow-2xs">
+          <label className="flex items-center gap-2 text-xs font-bold font-mono text-pink-900 cursor-pointer bg-white px-3 py-1.5 rounded-lg border border-pink-800 shadow-2xs">
             <input
               type="checkbox"
               id="restrict-to-owned-checkbox"
@@ -193,17 +193,17 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
         </div>
 
         {/* Action Toolbar & Search */}
-        <div className="p-4 sm:p-5 border-b border-gray-200 bg-[#FAF9F6] space-y-3">
+        <div className="p-4 sm:p-5 border-b border-pink-200 bg-rose-50 space-y-3">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
             {/* Search Input */}
             <div className="relative flex-1">
-              <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-pink-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search by code (e.g. A14, H6), name (e.g. Emerald), or series..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 bg-white border border-black/30 rounded-lg text-xs focus:outline-none focus:border-black font-sans"
+                className="w-full pl-9 pr-3 py-1.5 bg-white border border-pink-800/30 rounded-lg text-xs focus:outline-none focus:border-pink-800 font-sans"
               />
             </div>
 
@@ -212,7 +212,7 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
               <button
                 type="button"
                 onClick={() => handleSetAllCount(1000)}
-                className="px-2.5 py-1.5 bg-white hover:bg-gray-100 border border-black/30 rounded-md text-[10px] font-mono font-bold text-black transition-colors cursor-pointer"
+                className="px-2.5 py-1.5 bg-white hover:bg-rose-100 border border-pink-800/30 rounded-md text-[10px] font-mono font-bold text-pink-900 transition-colors cursor-pointer"
                 title="Sets 1,000 beads for all 221 colors"
               >
                 + Full Set (1k pcs)
@@ -221,7 +221,7 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
               <button
                 type="button"
                 onClick={handleSyncCurrentPattern}
-                className="px-2.5 py-1.5 bg-white hover:bg-gray-100 border border-black/30 rounded-md text-[10px] font-mono font-bold text-black transition-colors cursor-pointer"
+                className="px-2.5 py-1.5 bg-white hover:bg-rose-100 border border-pink-800/30 rounded-md text-[10px] font-mono font-bold text-pink-900 transition-colors cursor-pointer"
                 title="Stock all beads needed for current pattern"
               >
                 Stock Current Project
@@ -239,14 +239,14 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
               <button
                 type="button"
                 onClick={() => exportInventoryCsv(brand, inventory)}
-                className="p-1.5 bg-white hover:bg-gray-100 border border-black/30 rounded-md text-black transition-colors cursor-pointer"
+                className="p-1.5 bg-white hover:bg-rose-100 border border-pink-800/30 rounded-md text-pink-900 transition-colors cursor-pointer"
                 title="Export Stock CSV"
               >
                 <Download className="w-3.5 h-3.5" />
               </button>
 
               <label
-                className="p-1.5 bg-white hover:bg-gray-100 border border-black/30 rounded-md text-black transition-colors cursor-pointer flex items-center"
+                className="p-1.5 bg-white hover:bg-rose-100 border border-pink-800/30 rounded-md text-pink-900 transition-colors cursor-pointer flex items-center"
                 title="Import JSON Stock file"
               >
                 <Upload className="w-3.5 h-3.5" />
@@ -269,8 +269,8 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                   onClick={() => setSelectedSeries('all')}
                   className={`px-2 py-0.5 rounded text-[9.5px] font-mono border transition-all cursor-pointer ${
                     selectedSeries === 'all'
-                      ? 'bg-black text-white border-black font-bold'
-                      : 'bg-white text-gray-700 border-black/20 hover:border-black'
+                      ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                      : 'bg-white text-pink-700 border-pink-800/20 hover:border-pink-800'
                   }`}
                 >
                   All Series
@@ -281,8 +281,8 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                     onClick={() => setSelectedSeries(s.seriesId)}
                     className={`px-1.5 py-0.5 rounded text-[9px] font-mono border transition-all cursor-pointer ${
                       selectedSeries === s.seriesId
-                        ? 'bg-black text-white border-black font-bold'
-                        : 'bg-white text-gray-700 border-black/20 hover:border-black'
+                        ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                        : 'bg-white text-pink-700 border-pink-800/20 hover:border-pink-800'
                     }`}
                   >
                     {s.seriesId}
@@ -297,8 +297,8 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                 onClick={() => setStockFilter('all')}
                 className={`px-2 py-0.5 rounded border cursor-pointer ${
                   stockFilter === 'all'
-                    ? 'bg-black text-white border-black font-bold'
-                    : 'bg-white text-gray-600 border-gray-200'
+                    ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                    : 'bg-white text-pink-600 border-pink-200'
                 }`}
               >
                 All ({brandColors.length})
@@ -307,8 +307,8 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                 onClick={() => setStockFilter('in_stock')}
                 className={`px-2 py-0.5 rounded border cursor-pointer ${
                   stockFilter === 'in_stock'
-                    ? 'bg-black text-white border-black font-bold'
-                    : 'bg-white text-gray-600 border-gray-200'
+                    ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                    : 'bg-white text-pink-600 border-pink-200'
                 }`}
               >
                 In Stock ({inStockColorsCount})
@@ -317,8 +317,8 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                 onClick={() => setStockFilter('out_of_stock')}
                 className={`px-2 py-0.5 rounded border cursor-pointer ${
                   stockFilter === 'out_of_stock'
-                    ? 'bg-black text-white border-black font-bold'
-                    : 'bg-white text-gray-600 border-gray-200'
+                    ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                    : 'bg-white text-pink-600 border-pink-200'
                 }`}
               >
                 Out of Stock ({totalColorsCount - inStockColorsCount})
@@ -328,7 +328,7 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
         </div>
 
         {/* Color Grid Cards */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-gray-50/50">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-rose-50/50">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
             {filteredColors.map((color) => {
               const count = inventory[color.id] || 0;
@@ -342,50 +342,50 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                   id={`inventory-card-${color.id}`}
                   className={`p-2.5 rounded-xl border transition-all bg-white flex flex-col justify-between ${
                     hasStock
-                      ? 'border-black/30 shadow-2xs'
-                      : 'border-gray-200 opacity-60 hover:opacity-100'
+                      ? 'border-pink-800/30 shadow-2xs'
+                      : 'border-pink-200 opacity-60 hover:opacity-100'
                   }`}
                 >
                   {/* Top: Swatch, Code & Name */}
                   <div className="flex items-start gap-2.5 mb-2">
                     <div
-                      className="w-8 h-8 rounded-lg border border-black/30 shrink-0 flex items-center justify-center shadow-xs"
+                      className="w-8 h-8 rounded-lg border border-pink-800/30 shrink-0 flex items-center justify-center shadow-xs"
                       style={{ backgroundColor: color.hex }}
                     >
-                      <div className="w-2 h-2 rounded-full bg-black/20" />
+                      <div className="w-2 h-2 rounded-full bg-pink-800/20" />
                     </div>
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5">
                         <span
-                          className="font-mono text-[10px] font-bold px-1.5 py-0.2 rounded border border-black/20"
+                          className="font-mono text-[10px] font-bold px-1.5 py-0.2 rounded border border-pink-800/20"
                           style={{
                             backgroundColor: color.hex,
-                            color: isDark ? '#FFFFFF' : '#000000',
+                            color: isDark ? '#FFFFFF' : '#be185d',
                           }}
                         >
                           {color.code || color.hex.slice(1, 4)}
                         </span>
                         {color.series && (
-                          <span className="text-[8px] font-mono text-gray-500">
+                          <span className="text-[8px] font-mono text-pink-500">
                             {color.series}
                           </span>
                         )}
                       </div>
-                      <div className="text-xs font-semibold text-black truncate mt-0.5">
+                      <div className="text-xs font-semibold text-pink-900 truncate mt-0.5">
                         {color.name}
                       </div>
                     </div>
                   </div>
 
                   {/* Bottom: Quantity Controls */}
-                  <div className="flex items-center justify-between pt-1.5 border-t border-gray-100">
+                  <div className="flex items-center justify-between pt-1.5 border-t border-pink-100">
                     <div className="flex items-center gap-1">
                       <button
                         type="button"
                         onClick={() => handleAdjustStock(color.id, -100)}
                         disabled={count <= 0}
-                        className="w-6 h-6 rounded bg-gray-100 hover:bg-gray-200 disabled:opacity-30 text-black flex items-center justify-center text-xs font-bold cursor-pointer"
+                        className="w-6 h-6 rounded bg-rose-100 hover:bg-rose-200 disabled:opacity-30 text-pink-900 flex items-center justify-center text-xs font-bold cursor-pointer"
                         title="-100 beads"
                       >
                         -
@@ -399,13 +399,13 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                         onChange={(e) =>
                           handleSetStock(color.id, parseInt(e.target.value) || 0)
                         }
-                        className="w-16 px-1 py-0.5 text-center font-mono text-xs font-bold border border-black/20 rounded focus:outline-none focus:border-black"
+                        className="w-16 px-1 py-0.5 text-center font-mono text-xs font-bold border border-pink-800/20 rounded focus:outline-none focus:border-pink-800"
                       />
 
                       <button
                         type="button"
                         onClick={() => handleAdjustStock(color.id, 100)}
-                        className="w-6 h-6 rounded bg-gray-100 hover:bg-gray-200 text-black flex items-center justify-center text-xs font-bold cursor-pointer"
+                        className="w-6 h-6 rounded bg-rose-100 hover:bg-rose-200 text-pink-900 flex items-center justify-center text-xs font-bold cursor-pointer"
                         title="+100 beads"
                       >
                         +
@@ -417,8 +417,8 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                       onClick={() => handleSetStock(color.id, hasStock ? 0 : 500)}
                       className={`text-[9px] font-mono font-bold px-2 py-1 rounded transition-colors cursor-pointer ${
                         hasStock
-                          ? 'bg-emerald-100 text-emerald-900 hover:bg-emerald-200'
-                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                          ? 'bg-pink-100 text-pink-900 hover:bg-pink-200'
+                          : 'bg-rose-100 text-pink-600 hover:bg-rose-200'
                       }`}
                     >
                       {hasStock ? 'In Stock' : '+500'}
@@ -431,17 +431,17 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-black bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
-          <div className="flex items-center gap-4 text-gray-600">
+        <div className="p-4 border-t border-pink-800 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+          <div className="flex items-center gap-4 text-pink-600">
             <div>
               Total In Stock:{' '}
-              <span className="font-bold text-black">
+              <span className="font-bold text-pink-900">
                 {totalBeadsInStock.toLocaleString()} beads
               </span>
             </div>
             <div>
               Palette Coverage:{' '}
-              <span className="font-bold text-black">
+              <span className="font-bold text-pink-900">
                 {Math.round((inStockColorsCount / totalColorsCount) * 100)}%
               </span>
             </div>
@@ -450,7 +450,7 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
           <button
             id="close-inventory-modal-btn"
             onClick={onClose}
-            className="px-6 py-2 bg-black hover:bg-neutral-800 text-white rounded-lg font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer self-end sm:self-auto"
+            className="px-6 py-2 bg-pink-800 hover:bg-pink-800 text-white rounded-lg font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer self-end sm:self-auto"
           >
             Done & Save
           </button>

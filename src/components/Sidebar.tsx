@@ -296,15 +296,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   return (
-    <aside className="w-72 sm:w-84 border-r border-black flex flex-col p-5 sm:p-6 space-y-6 bg-white overflow-y-auto shrink-0 select-none">
+    <aside className="w-72 sm:w-84 border-r border-pink-800 flex flex-col p-4 sm:p-5 space-y-4 bg-rose-50 overflow-y-auto shrink-0 select-none">
       {/* 01. SOURCE & BRAND PALETTE */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-pink-400">
             01. Bead Brand & Source
           </p>
           {activeImage && (
-            <span className="inline-flex items-center gap-1 text-[9px] uppercase font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 border border-emerald-300 rounded">
+            <span className="inline-flex items-center gap-1 text-[9px] uppercase font-mono font-bold text-pink-700 bg-pink-100 px-2 py-0.5 border border-pink-300 rounded">
               <CheckCircle2 className="w-2.5 h-2.5" />
               Active
             </span>
@@ -312,17 +312,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Brand Palette Switcher with MARD 221 Star Styling */}
-        <div className="mb-4">
-          <label className="text-[10px] uppercase font-bold tracking-wider text-black flex items-center justify-between mb-1">
+        <div className="mb-2.5">
+          <label className="text-[10px] uppercase font-bold tracking-wider text-pink-900 flex items-center justify-between mb-2">
             <span className="flex items-center gap-1">
               <span>Bead Brand Palette</span>
               {isMardActive && (
-                <span className="text-[8px] bg-black text-amber-300 px-1 py-0.2 rounded font-mono font-bold flex items-center gap-0.5">
-                  <Star className="w-2.5 h-2.5 fill-amber-300" /> MAIN
+                <span className="text-[8px] bg-pink-800 text-white px-1 py-0.2 rounded font-mono font-bold flex items-center gap-0.5">
+                  <Star className="w-2.5 h-2.5 fill-white" /> MAIN
                 </span>
               )}
             </span>
-            <span className="text-[9px] font-mono text-gray-500 font-bold">
+            <span className="text-[9px] font-mono text-pink-500 font-bold">
               {activeBrandPalette.length} colors
             </span>
           </label>
@@ -335,8 +335,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             }}
             className={`w-full border rounded p-2 text-xs font-bold focus:outline-none cursor-pointer ${
               isMardActive
-                ? 'border-black bg-neutral-900 text-white font-mono'
-                : 'border-black bg-[#FAF9F6] text-black'
+                ? 'border-pink-800 bg-pink-900 text-white font-mono'
+                : 'border-pink-800 bg-rose-50 text-pink-900'
             }`}
           >
             <option value="mard">★ MARD 221 (Asian Standard • 221 Colors)</option>
@@ -345,19 +345,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <option value="artkal">Artkal Beads (S-Series • 50 Colors)</option>
             <option value="nabbi">Nabbi / Fuse (Nordic • 25 Colors)</option>
           </select>
-          <p className="text-[9px] text-gray-500 mt-1 leading-tight">
+          <p className="text-[9px] text-pink-500 mt-2 leading-tight">
             {BRAND_INFO[settings.brand]?.description}
           </p>
 
           {/* MARD Reference Notice */}
           {isMardActive && (
-            <div className="mt-2.5 p-2.5 bg-blue-50 border border-blue-200 rounded text-blue-950 text-[10px] flex items-start gap-2">
-              <AlertTriangle className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+            <div className="mt-2 p-2.5 bg-pink-50 border border-pink-200 rounded text-pink-950 text-[10px] flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-pink-600 shrink-0 mt-0.5" />
               <div>
-                <span className="font-bold block uppercase tracking-wider text-[9px] text-blue-900">
+                <span className="font-bold block uppercase tracking-wider text-[9px] text-pink-900">
                   MARD 221 Engine Active
                 </span>
-                <span className="leading-tight block text-blue-800">
+                <span className="leading-tight block text-pink-800">
                   9 full color series (A1-M15) loaded with CIEDE2000 precision color matching for skin, anime, and gradient artwork.
                 </span>
               </div>
@@ -367,9 +367,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Active Source Image Preview (if image loaded) */}
         {activeImage ? (
-          <div className="border-2 border-black rounded-xl p-3.5 bg-[#FAF9F6] space-y-3 mb-3 shadow-xs">
-            <div className="flex items-center gap-3">
-              <div className="w-14 h-14 bg-white border border-black rounded-lg overflow-hidden flex items-center justify-center shrink-0 shadow-xs">
+          <div className="border-2 border-pink-800 rounded-xl p-2.5 bg-rose-50 space-y-2 mb-2.5 shadow-xs">
+            <div className="flex items-center gap-2">
+              <div className="w-12 h-12 bg-white border border-pink-800 rounded-lg overflow-hidden flex items-center justify-center shrink-0 shadow-xs">
                 <img
                   src={activeImage.src}
                   alt="Source"
@@ -377,14 +377,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-bold text-black truncate">
+                <div className="text-[10px] font-bold text-pink-900 truncate">
                   Source Loaded
                 </div>
-                <div className="text-[10px] font-mono text-gray-500">
-                  {activeImage.naturalWidth} × {activeImage.naturalHeight} px
+                <div className="text-[9px] font-mono text-pink-500 leading-tight">
+                  {activeImage.naturalWidth}×{activeImage.naturalHeight}px
                 </div>
-                <div className="text-[9px] text-emerald-600 font-bold flex items-center gap-1 mt-0.5">
-                  <Check className="w-3 h-3" /> {BRAND_INFO[settings.brand]?.name} ({activeBrandPalette.length}c)
+                <div className="text-[8px] text-pink-600 font-bold flex items-center gap-1 mt-0.5">
+                  <Check className="w-2.5 h-2.5" /> {BRAND_INFO[settings.brand]?.name}
                 </div>
               </div>
             </div>
@@ -393,10 +393,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <button
               id="convert-pattern-btn"
               onClick={handleManualConvert}
-              className={`w-full py-2 px-3 border border-black rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs ${
+              className={`w-full py-1.5 px-3 border border-pink-800 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs ${
                 justConverted
-                  ? 'bg-emerald-600 text-white'
-                  : 'bg-black hover:bg-neutral-800 text-white'
+                  ? 'bg-pink-600 text-white animate-scale-up'
+                  : 'bg-pink-800 hover:bg-pink-900 text-white'
               }`}
             >
               {justConverted ? (
@@ -420,10 +420,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-all duration-200 ${
+          className={`border-2 border-dashed rounded-xl p-2.5 text-center cursor-pointer transition-all duration-200 ${
             isDragging
-              ? 'border-black bg-neutral-100 scale-[1.01]'
-              : 'border-black/30 hover:border-black bg-[#FAF9F6]'
+              ? 'border-pink-800 bg-pink-100 scale-[1.01]'
+              : 'border-pink-800/30 hover:border-pink-800 bg-rose-50'
           }`}
         >
           <input
@@ -437,15 +437,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
             }}
             className="hidden"
           />
-          <div className="flex flex-col items-center space-y-1.5">
-            <div className="w-8 h-8 rounded-full border border-black flex items-center justify-center bg-white shadow-xs">
-              <Upload className="w-4 h-4 text-black" />
+          <div className="flex flex-col items-center space-y-1">
+            <div className="w-7 h-7 rounded-full border border-pink-800 flex items-center justify-center bg-white shadow-xs">
+              <Upload className="w-3.5 h-3.5 text-pink-800" />
             </div>
-            <p className="text-xs font-bold text-[#1A1A1A]">
-              {activeImage ? 'Upload Different Image' : 'Drop Image Here'}
+            <p className="text-[10px] font-bold text-pink-900 leading-tight">
+              {activeImage ? 'Upload Different' : 'Drop Image'}
             </p>
-            <p className="text-[10px] text-gray-500">
-              PNG, JPG, WebP (client-side only)
+            <p className="text-[8.5px] text-pink-500 leading-tight">
+              PNG, JPG, WebP
             </p>
           </div>
         </div>
@@ -453,15 +453,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* 02. PATTERN SIZE & CONVERTER QUALITY (MakeBead Engine) */}
       <div>
-        <p className="text-[10px] uppercase tracking-[0.2em] mb-3 font-bold text-gray-400">
+        <p className="text-[10px] uppercase tracking-[0.2em] mb-2.5 font-bold text-pink-400">
           02. Pattern Size & Quality Engine
         </p>
 
-        <div className="space-y-4">
+        <div className="space-y-2.5">
           {/* One-Click Presets Bar */}
           <div>
-            <label className="text-[10px] uppercase font-bold tracking-wider text-black block mb-1.5 flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-amber-500" />
+            <label className="text-[10px] uppercase font-bold tracking-wider text-pink-900 block mb-2 flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-pink-500" />
               <span>Conversion Preset</span>
             </label>
             <div className="grid grid-cols-2 gap-1.5">
@@ -471,8 +471,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => applyPreset('text-logo')}
                 className={`p-2 border rounded-lg text-left transition-all cursor-pointer ${
                   settings.presetMode === 'text-logo'
-                    ? 'bg-black text-white border-black shadow-xs'
-                    : 'bg-[#FAF9F6] text-black border-black/20 hover:border-black'
+                    ? 'bg-pink-800 text-white border-pink-800 shadow-xs'
+                    : 'bg-rose-50 text-pink-900 border-pink-800/20 hover:border-pink-800'
                 }`}
               >
                 <div className="text-[10px] font-bold uppercase flex items-center gap-1">
@@ -489,8 +489,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => applyPreset('photo')}
                 className={`p-2 border rounded-lg text-left transition-all cursor-pointer ${
                   settings.presetMode === 'photo'
-                    ? 'bg-black text-white border-black shadow-xs'
-                    : 'bg-[#FAF9F6] text-black border-black/20 hover:border-black'
+                    ? 'bg-pink-800 text-white border-pink-800 shadow-xs'
+                    : 'bg-rose-50 text-pink-900 border-pink-800/20 hover:border-pink-800'
                 }`}
               >
                 <div className="text-[10px] font-bold uppercase flex items-center gap-1">
@@ -507,8 +507,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => applyPreset('pixel-art')}
                 className={`p-2 border rounded-lg text-left transition-all cursor-pointer ${
                   settings.presetMode === 'pixel-art'
-                    ? 'bg-black text-white border-black shadow-xs'
-                    : 'bg-[#FAF9F6] text-black border-black/20 hover:border-black'
+                    ? 'bg-pink-800 text-white border-pink-800 shadow-xs'
+                    : 'bg-rose-50 text-pink-900 border-pink-800/20 hover:border-pink-800'
                 }`}
               >
                 <div className="text-[10px] font-bold uppercase flex items-center gap-1">
@@ -525,8 +525,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => applyPreset('vibrant')}
                 className={`p-2 border rounded-lg text-left transition-all cursor-pointer ${
                   settings.presetMode === 'vibrant'
-                    ? 'bg-black text-white border-black shadow-xs'
-                    : 'bg-[#FAF9F6] text-black border-black/20 hover:border-black'
+                    ? 'bg-pink-800 text-white border-pink-800 shadow-xs'
+                    : 'bg-rose-50 text-pink-900 border-pink-800/20 hover:border-pink-800'
                 }`}
               >
                 <div className="text-[10px] font-bold uppercase flex items-center gap-1">
@@ -545,8 +545,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onClick={() => applyPreset('square-52')}
               className={`w-full p-2.5 border-2 rounded-xl text-left transition-all cursor-pointer flex items-center justify-between ${
                 settings.gridWidth === 52 && settings.fitMode === 'contain'
-                  ? 'bg-black text-white border-black shadow-sm'
-                  : 'bg-amber-50 text-black border-amber-400 hover:border-black'
+                  ? 'bg-pink-800 text-white border-pink-800 shadow-sm'
+                  : 'bg-pink-50 text-pink-900 border-pink-400 hover:border-pink-800'
               }`}
             >
               <div>
@@ -557,18 +557,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   Square board • Unsquished aspect ratio • Crisp letters
                 </div>
               </div>
-              <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-400/30 text-current">
+              <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-pink-400/30 text-current">
                 52×52
               </span>
             </button>
           </div>
 
           {/* Lettering & Graphic Clarity Optimization Panel */}
-          <div className="p-3 border-2 border-black rounded-xl bg-amber-50/60 space-y-2">
+          <div className="p-3 border-2 border-pink-800 rounded-xl bg-pink-50/60 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-black flex items-center gap-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-pink-900 flex items-center gap-1">
                 <span>Lettering & Text Clarity</span>
-                <span className="text-[8px] bg-black text-amber-300 px-1 py-0.2 rounded font-mono font-bold">
+                <span className="text-[8px] bg-pink-800 text-white px-1 py-0.2 rounded font-mono font-bold">
                   MARD
                 </span>
               </span>
@@ -588,12 +588,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 className="accent-black rounded"
               />
             </div>
-            <p className="text-[8.5px] text-gray-600 leading-tight">
+            <p className="text-[8.5px] text-pink-600 leading-tight">
               Binarizes anti-aliased font halos and sharpens strokes so &ldquo;MADE IN MOROCCO&rdquo; letters remain clear and solid.
             </p>
 
-            <div className="pt-2 border-t border-black/10 flex flex-col space-y-1.5">
-              <label className="flex items-center gap-2 text-[10px] text-black font-semibold cursor-pointer">
+            <div className="pt-2 border-t border-pink-200 flex flex-col space-y-1">
+              <label className="flex items-center gap-2 text-[10px] text-pink-900 font-semibold cursor-pointer">
                 <input
                   type="checkbox"
                   checked={settings.adjustments.cleanSolidFills ?? true}
@@ -611,7 +611,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <span>Clean texture noise in text boxes</span>
               </label>
 
-              <label className="flex items-center gap-2 text-[10px] text-black font-semibold cursor-pointer">
+              <label className="flex items-center gap-2 text-[10px] text-pink-900 font-semibold cursor-pointer">
                 <input
                   type="checkbox"
                   id="auto-crop-margin-checkbox"
@@ -629,17 +629,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
           </div>
           {/* Continuous Pattern Size Slider + Dropdown Combo Container */}
-          <div className="p-3.5 border-2 border-black rounded-xl bg-[#FAF9F6] space-y-3 shadow-xs">
+          <div className="p-3.5 border-2 border-pink-800 rounded-xl bg-rose-50 space-y-2.5 shadow-xs">
             <div>
-              <div className="flex justify-between items-center mb-1.5">
+              <div className="flex justify-between items-center mb-2">
                 <label
                   htmlFor="pattern-width-input"
-                  className="text-[10px] uppercase font-bold tracking-wider text-black flex items-center gap-1.5"
+                  className="text-[10px] uppercase font-bold tracking-wider text-pink-900 flex items-center gap-1.5"
                 >
-                  <Grid className="w-3.5 h-3.5 text-black" />
+                  <Grid className="w-3.5 h-3.5 text-pink-900" />
                   <span>Pattern Width</span>
                 </label>
-                <span className="text-[9px] font-mono uppercase font-bold text-gray-500">
+                <span className="text-[9px] font-mono uppercase font-bold text-pink-500">
                   10–150 Range
                 </span>
               </div>
@@ -667,9 +667,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         }
                       }
                     }}
-                    className="w-full bg-white border border-black rounded px-2.5 py-1.5 text-xs font-mono font-bold text-black focus:outline-none focus:ring-1 focus:ring-black pr-16"
+                    className="w-full bg-white border border-pink-800 rounded px-2.5 py-1.5 text-xs font-mono font-bold text-pink-900 focus:outline-none focus:ring-1 focus:ring-black pr-16"
                   />
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-mono uppercase text-gray-500 pointer-events-none font-bold">
+                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-mono uppercase text-pink-500 pointer-events-none font-bold">
                     STITCHES
                   </span>
                 </div>
@@ -694,7 +694,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       }
                     }
                   }}
-                  className="w-28 bg-white border border-black rounded px-2 py-1.5 text-[11px] font-bold text-black focus:outline-none cursor-pointer"
+                  className="w-28 bg-white border border-pink-800 rounded px-2 py-1.5 text-[11px] font-bold text-pink-900 focus:outline-none cursor-pointer"
                 >
                   <option value="custom" disabled>
                     Presets...
@@ -730,7 +730,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 }}
                 className="w-full accent-black cursor-pointer"
               />
-              <div className="flex justify-between text-[9px] text-gray-400 font-mono mt-0.5">
+              <div className="flex justify-between text-[9px] text-pink-400 font-mono mt-0.5">
                 <span>10</span>
                 <span>29 (1 board)</span>
                 <span>58 (4)</span>
@@ -741,30 +741,30 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
 
             {/* Live Text: Beads & Pegboards */}
-            <div className="p-2 bg-white rounded border border-black/10 text-center">
-              <div className="font-mono text-xs font-bold text-black">
+            <div className="p-2 bg-white rounded border border-pink-200 text-center">
+              <div className="font-mono text-xs font-bold text-pink-900">
                 {currentGridWidth} × {currentGridHeight} beads
               </div>
-              <div className="text-[10px] text-gray-500 font-mono">
+              <div className="text-[10px] text-pink-500 font-mono">
                 ~{totalPegboards} {totalPegboards === 1 ? 'standard pegboard' : 'standard pegboards'} (29×29)
               </div>
             </div>
 
             {/* Finished Size Readout with Unit Toggle */}
-            <div className="pt-2 border-t border-black/10">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] uppercase font-bold tracking-wider text-black flex items-center gap-1">
-                  <Ruler className="w-3 h-3 text-black" />
+            <div className="pt-2 border-t border-pink-800/10">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] uppercase font-bold tracking-wider text-pink-900 flex items-center gap-1">
+                  <Ruler className="w-3 h-3 text-pink-900" />
                   <span>Finished Size</span>
                 </span>
 
-                <div className="flex border border-black rounded overflow-hidden text-[9px] font-mono font-bold">
+                <div className="flex border border-pink-800 rounded overflow-hidden text-[9px] font-mono font-bold">
                   <button
                     onClick={() => setSizeUnit('in')}
                     className={`px-2 py-0.5 cursor-pointer transition-colors ${
                       sizeUnit === 'in'
-                        ? 'bg-black text-white'
-                        : 'bg-white text-black hover:bg-gray-100'
+                        ? 'bg-pink-800 text-white'
+                        : 'bg-white text-pink-900 hover:bg-rose-100'
                     }`}
                   >
                     IN
@@ -773,8 +773,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     onClick={() => setSizeUnit('cm')}
                     className={`px-2 py-0.5 cursor-pointer transition-colors ${
                       sizeUnit === 'cm'
-                        ? 'bg-black text-white'
-                        : 'bg-white text-black hover:bg-gray-100'
+                        ? 'bg-pink-800 text-white'
+                        : 'bg-white text-pink-900 hover:bg-rose-100'
                     }`}
                   >
                     CM
@@ -782,19 +782,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
               </div>
 
-              <div className="text-[11px] font-mono bg-white px-2.5 py-1.5 rounded border border-black/10 flex items-center justify-between">
-                <span className="text-gray-500 text-[10px]">Real Dimension:</span>
-                <span className="font-bold text-black">
+              <div className="text-[11px] font-mono bg-white px-2.5 py-1.5 rounded border border-pink-200 flex items-center justify-between">
+                <span className="text-pink-500 text-[10px]">Real Dimension:</span>
+                <span className="font-bold text-pink-900">
                   ≈ {sizeUnit === 'in' ? `${widthInInches} × ${heightInInches} in` : `${widthInCm} × ${heightInCm} cm`}
                 </span>
               </div>
             </div>
 
             {/* Board Fitting & Aspect Ratio Controls */}
-            <div className="pt-2 border-t border-black/10 space-y-1.5">
-              <label className="text-[10px] uppercase font-bold tracking-wider text-black flex items-center justify-between">
+            <div className="pt-2 border-t border-pink-200 space-y-1.5">
+              <label className="text-[10px] uppercase font-bold tracking-wider text-pink-900 flex items-center justify-between">
                 <span>Board Fit Mode</span>
-                <span className="text-[8.5px] font-mono text-gray-500 font-normal">
+                <span className="text-[8.5px] font-mono text-pink-500 font-normal">
                   {settings.fitMode === 'contain'
                     ? 'Square Centered (No Squish)'
                     : settings.fitMode === 'stretch'
@@ -816,8 +816,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   }
                   className={`py-1 px-1.5 rounded border text-[9.5px] font-bold text-center cursor-pointer transition-all ${
                     (settings.fitMode ?? 'contain') === 'contain'
-                      ? 'bg-black text-white border-black shadow-2xs'
-                      : 'bg-white text-black border-black/20 hover:border-black'
+                      ? 'bg-pink-800 text-white border-pink-800 shadow-2xs'
+                      : 'bg-white text-pink-900 border-pink-800/20 hover:border-pink-800'
                   }`}
                   title="Centers rectangular image inside square 52x52 grid without squishing"
                 >
@@ -836,8 +836,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   }
                   className={`py-1 px-1.5 rounded border text-[9.5px] font-bold text-center cursor-pointer transition-all ${
                     settings.fitMode === 'natural'
-                      ? 'bg-black text-white border-black shadow-2xs'
-                      : 'bg-white text-black border-black/20 hover:border-black'
+                      ? 'bg-pink-800 text-white border-pink-800 shadow-2xs'
+                      : 'bg-white text-pink-900 border-pink-800/20 hover:border-pink-800'
                   }`}
                   title="Shrinks height proportionally to image ratio (e.g. 52x29)"
                 >
@@ -856,8 +856,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   }
                   className={`py-1 px-1.5 rounded border text-[9.5px] font-bold text-center cursor-pointer transition-all ${
                     settings.fitMode === 'stretch'
-                      ? 'bg-black text-white border-black shadow-2xs'
-                      : 'bg-white text-black border-black/20 hover:border-black'
+                      ? 'bg-pink-800 text-white border-pink-800 shadow-2xs'
+                      : 'bg-white text-pink-900 border-pink-800/20 hover:border-pink-800'
                   }`}
                   title="Stretches to fill entire square grid"
                 >
@@ -872,7 +872,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="flex justify-between items-center mb-1">
               <label
                 htmlFor="max-colors-slider"
-                className="text-[10px] uppercase font-bold tracking-wider text-black"
+                className="text-[10px] uppercase font-bold tracking-wider text-pink-900"
               >
                 Max Colors Palette
               </label>
@@ -881,17 +881,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <button
                     type="button"
                     onClick={onResetMaxColorsAuto}
-                    className="text-[8.5px] font-mono text-gray-500 hover:text-black underline cursor-pointer"
+                    className="text-[8.5px] font-mono text-pink-500 hover:text-pink-900 underline cursor-pointer"
                     title="Reset to auto-scale based on grid size"
                   >
                     Auto-Scale
                   </button>
                 ) : (
-                  <span className="text-[8.5px] font-mono text-emerald-700 bg-emerald-50 px-1 rounded border border-emerald-200">
+                  <span className="text-[8.5px] font-mono text-pink-700 bg-pink-50 px-1 rounded border border-pink-200">
                     Auto
                   </span>
                 )}
-                <span className="font-mono text-xs font-bold bg-black text-white px-1.5 py-0.5 rounded text-[10px]">
+                <span className="font-mono text-xs font-bold bg-pink-800 text-white px-1.5 py-0.5 rounded text-[10px]">
                   {settings.maxColors}
                 </span>
               </div>
@@ -916,7 +916,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               }}
               className="w-full accent-black cursor-pointer"
             />
-            <div className="flex justify-between text-[9px] text-gray-400 font-mono">
+            <div className="flex justify-between text-[9px] text-pink-400 font-mono">
               <span>5 (MIN)</span>
               <span>25</span>
               <span>50 (MAX)</span>
@@ -924,13 +924,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
 
           {/* Dithering Mode Selector */}
-          <div className="p-3 border border-black/20 rounded-lg bg-[#FAF9F6] space-y-2.5">
+            <div className="p-3 border border-pink-200 rounded-lg bg-rose-50 space-y-2.5">
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider block">
                   Dithering Engine
                 </span>
-                <span className="text-[9px] text-gray-500">
+                <span className="text-[9px] text-pink-500">
                   {settings.dithering ? 'Gradient diffusion enabled' : 'Clean / Posterized pixel art'}
                 </span>
               </div>
@@ -944,7 +944,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   }))
                 }
                 className={`w-10 h-5 rounded-full relative p-0.5 transition-colors cursor-pointer ${
-                  settings.dithering ? 'bg-black' : 'bg-gray-200'
+                  settings.dithering ? 'bg-pink-800' : 'bg-rose-300'
                 }`}
               >
                 <div
@@ -956,9 +956,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
 
             {settings.dithering && (
-              <div className="space-y-2 pt-2 border-t border-black/10">
+              <div className="space-y-2 pt-2 border-t border-pink-200">
                 <div>
-                  <label className="text-[9px] uppercase font-bold text-gray-600 block mb-1">
+                  <label className="text-[9px] uppercase font-bold text-pink-600 block mb-1">
                     Dither Algorithm
                   </label>
                   <select
@@ -970,7 +970,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         ditherType: dType,
                       }));
                     }}
-                    className="w-full bg-white border border-black/30 rounded px-2 py-1 text-xs font-bold text-black focus:outline-none"
+                    className="w-full bg-white border border-pink-300 rounded px-2 py-1 text-xs font-bold text-pink-900 focus:outline-none"
                   >
                     <option value="floyd-steinberg">Floyd–Steinberg (Smooth Blend)</option>
                     <option value="atkinson">Atkinson (Crisp Outlines • MakeBead)</option>
@@ -981,7 +981,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                 {/* Dither Intensity Slider */}
                 <div>
-                  <div className="flex justify-between text-[9px] uppercase font-bold text-gray-600 mb-0.5">
+                  <div className="flex justify-between text-[9px] uppercase font-bold text-pink-600 mb-0.5">
                     <span>Dither Intensity</span>
                     <span className="font-mono">{settings.ditherStrength ?? 75}%</span>
                   </div>
@@ -1006,13 +1006,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
 
           {/* Advanced MakeBead Quality Engine (CIEDE2000, Sharpness, Edge Clarity) */}
-          <div className="border border-black/20 rounded-lg overflow-hidden">
+          <div className="border border-pink-800/20 rounded-lg overflow-hidden">
             <button
               onClick={() => setShowAdvancedEngine((prev) => !prev)}
-              className="w-full px-3 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center justify-between hover:bg-[#FAF9F6] transition-colors cursor-pointer"
+              className="w-full px-3 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center justify-between hover:bg-rose-50 transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-black" />
+                <Sparkles className="w-3.5 h-3.5 text-pink-900" />
                 <span>Color Science & Clarity</span>
               </div>
               {showAdvancedEngine ? (
@@ -1023,10 +1023,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </button>
 
             {showAdvancedEngine && (
-              <div className="p-3 border-t border-black/10 space-y-3 bg-[#FAF9F6]">
+              <div className="p-3 border-t border-pink-800/10 space-y-2.5 bg-rose-50">
                 {/* Color Matching Algorithm */}
                 <div>
-                  <label className="text-[9px] uppercase tracking-wider font-bold text-gray-700 block mb-1">
+                  <label className="text-[9px] uppercase tracking-wider font-bold text-pink-700 block mb-1">
                     Color Matching Metric
                   </label>
                   <select
@@ -1038,13 +1038,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         matchingAlgorithm: algo,
                       }));
                     }}
-                    className="w-full bg-white border border-black/30 rounded px-2 py-1 text-xs font-bold text-black focus:outline-none cursor-pointer"
+                    className="w-full bg-white border border-pink-300 rounded px-2 py-1 text-xs font-bold text-pink-900 focus:outline-none cursor-pointer"
                   >
                     <option value="ciede2000">CIEDE2000 (Perceptual Gold Standard)</option>
                     <option value="weighted_rgb">Weighted RGB (Pixel Art & Sprites)</option>
                     <option value="cie76">CIE76 (Standard Lab Distance)</option>
                   </select>
-                  <p className="text-[8.5px] text-gray-500 mt-1 leading-tight">
+                  <p className="text-[8.5px] text-pink-500 mt-1 leading-tight">
                     {settings.matchingAlgorithm === 'weighted_rgb'
                       ? 'Emphasizes high-contrast pixel boundaries for sprites.'
                       : 'CIEDE2000 accurately preserves skin tones and subtle anime gradients.'}
@@ -1053,7 +1053,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                 {/* Edge Sharpness / Clarity Filter */}
                 <div>
-                  <div className="flex justify-between text-[9px] uppercase font-bold text-gray-700 mb-1">
+                  <div className="flex justify-between text-[9px] uppercase font-bold text-pink-700 mb-1">
                     <span>Edge Crispness (Unsharp Mask)</span>
                     <span className="font-mono">{settings.adjustments.sharpness ?? 25}%</span>
                   </div>
@@ -1075,7 +1075,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     }}
                     className="w-full accent-black cursor-pointer"
                   />
-                  <p className="text-[8.5px] text-gray-500 mt-0.5">
+                  <p className="text-[8.5px] text-pink-500 mt-0.5">
                     Sharpens facial outlines and small details before bead quantization.
                   </p>
                 </div>
@@ -1084,13 +1084,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
 
           {/* Background Color Removal Collapsible */}
-          <div className="border border-black/20 rounded-lg overflow-hidden">
+          <div className="border border-pink-800/20 rounded-lg overflow-hidden">
             <button
               onClick={() => setShowBgRemoval((prev) => !prev)}
-              className="w-full px-3 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center justify-between hover:bg-[#FAF9F6] transition-colors cursor-pointer"
+              className="w-full px-3 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center justify-between hover:bg-rose-50 transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-1.5">
-                <Scissors className="w-3.5 h-3.5 text-black" />
+                <Scissors className="w-3.5 h-3.5 text-pink-900" />
                 <span>Remove Background Color</span>
               </div>
               {showBgRemoval ? (
@@ -1101,9 +1101,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </button>
 
             {showBgRemoval && (
-              <div className="p-3 border-t border-black/10 space-y-3 bg-[#FAF9F6]">
+              <div className="p-3 border-t border-pink-800/10 space-y-2.5 bg-rose-50">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase font-bold text-black">
+                  <span className="text-[10px] uppercase font-bold text-pink-900">
                     Enable Transparent Mask
                   </span>
                   <input
@@ -1124,7 +1124,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
 
                 <div>
-                  <label className="text-[9px] uppercase tracking-wider font-bold text-gray-600 block mb-1">
+                  <label className="text-[9px] uppercase tracking-wider font-bold text-pink-600 block mb-1">
                     Target Background Color
                   </label>
                   <div className="flex items-center gap-2">
@@ -1151,7 +1151,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           },
                         }));
                       }}
-                      className="w-8 h-8 rounded border border-black cursor-pointer p-0"
+                      className="w-8 h-8 rounded border border-pink-800 cursor-pointer p-0"
                     />
                     <div className="flex gap-1">
                       <button
@@ -1165,7 +1165,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                             },
                           }))
                         }
-                        className="px-2 py-1 text-[9px] font-mono border border-black/20 bg-white rounded hover:bg-black hover:text-white cursor-pointer"
+                        className="px-2 py-1 text-[9px] font-mono border border-pink-800/20 bg-white rounded hover:bg-pink-800 hover:text-white cursor-pointer"
                       >
                         White
                       </button>
@@ -1180,7 +1180,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                             },
                           }))
                         }
-                        className="px-2 py-1 text-[9px] font-mono border border-black/20 bg-white rounded hover:bg-black hover:text-white cursor-pointer"
+                        className="px-2 py-1 text-[9px] font-mono border border-pink-800/20 bg-white rounded hover:bg-pink-800 hover:text-white cursor-pointer"
                       >
                         Black
                       </button>
@@ -1189,7 +1189,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[9px] uppercase font-bold text-gray-600 mb-1">
+                  <div className="flex justify-between text-[9px] uppercase font-bold text-pink-600 mb-1">
                     <span>Removal Tolerance</span>
                     <span className="font-mono">{settings.bgRemoval.tolerance}%</span>
                   </div>
@@ -1215,13 +1215,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
 
           {/* Image Adjustments Collapsible */}
-          <div className="border border-black/20 rounded-lg overflow-hidden">
+          <div className="border border-pink-800/20 rounded-lg overflow-hidden">
             <button
               onClick={() => setShowAdjustments((prev) => !prev)}
-              className="w-full px-3 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center justify-between hover:bg-[#FAF9F6] transition-colors cursor-pointer"
+              className="w-full px-3 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center justify-between hover:bg-rose-50 transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-1.5">
-                <SlidersHorizontal className="w-3.5 h-3.5 text-black" />
+                <SlidersHorizontal className="w-3.5 h-3.5 text-pink-900" />
                 <span>Adjust Image Exposure</span>
               </div>
               {showAdjustments ? (
@@ -1232,9 +1232,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </button>
 
             {showAdjustments && (
-              <div className="p-3 border-t border-black/10 space-y-2.5 bg-[#FAF9F6]">
+              <div className="p-3 border-t border-pink-200 space-y-2.5 bg-rose-50">
                 <div>
-                  <div className="flex justify-between text-[9px] uppercase font-bold text-gray-600 mb-1">
+                  <div className="flex justify-between text-[9px] uppercase font-bold text-pink-600 mb-1">
                     <span>Brightness</span>
                     <span className="font-mono">{settings.adjustments.brightness}</span>
                   </div>
@@ -1257,7 +1257,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[9px] uppercase font-bold text-gray-600 mb-1">
+                  <div className="flex justify-between text-[9px] uppercase font-bold text-pink-600 mb-1">
                     <span>Contrast</span>
                     <span className="font-mono">{settings.adjustments.contrast}</span>
                   </div>
@@ -1280,7 +1280,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[9px] uppercase font-bold text-gray-600 mb-1">
+                  <div className="flex justify-between text-[9px] uppercase font-bold text-pink-600 mb-1">
                     <span>Saturation</span>
                     <span className="font-mono">{settings.adjustments.saturation}</span>
                   </div>
@@ -1309,7 +1309,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       adjustments: { brightness: 0, contrast: 0, saturation: 0, sharpness: 25 },
                     }))
                   }
-                  className="w-full py-1 text-[9px] font-mono uppercase text-gray-500 hover:text-black border border-black/10 hover:border-black rounded bg-white transition-colors cursor-pointer"
+                  className="w-full py-1 text-[9px] font-mono uppercase text-pink-500 hover:text-pink-900 border border-pink-800/10 hover:border-pink-800 rounded bg-white transition-colors cursor-pointer"
                 >
                   Reset Exposure
                 </button>
@@ -1321,8 +1321,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* 03. PATTERN EDITING TOOLBOX */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-pink-400">
             03. Editor Toolbox
           </p>
           <div className="flex items-center gap-1">
@@ -1330,32 +1330,32 @@ export const Sidebar: React.FC<SidebarProps> = ({
               id="undo-btn"
               onClick={onUndo}
               disabled={!canUndo}
-              className="p-1 border border-black/20 hover:border-black rounded disabled:opacity-30 transition-colors cursor-pointer"
+              className="p-1 border border-pink-800/20 hover:border-pink-800 rounded disabled:opacity-30 transition-colors cursor-pointer"
               title="Undo (Ctrl+Z)"
             >
-              <Undo2 className="w-3 h-3 text-black" />
+              <Undo2 className="w-3 h-3 text-pink-900" />
             </button>
             <button
               id="redo-btn"
               onClick={onRedo}
               disabled={!canRedo}
-              className="p-1 border border-black/20 hover:border-black rounded disabled:opacity-30 transition-colors cursor-pointer"
+              className="p-1 border border-pink-800/20 hover:border-pink-800 rounded disabled:opacity-30 transition-colors cursor-pointer"
               title="Redo (Ctrl+Y)"
             >
-              <Redo2 className="w-3 h-3 text-black" />
+              <Redo2 className="w-3 h-3 text-pink-900" />
             </button>
           </div>
         </div>
 
         {/* Tool Selector Grid */}
-        <div className="grid grid-cols-5 gap-1.5 mb-4">
+        <div className="grid grid-cols-5 gap-1.5 mb-2.5">
           <button
             id="tool-paint-btn"
             onClick={() => onSelectTool('paint')}
             className={`p-1.5 border rounded flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
               activeTool === 'paint'
-                ? 'bg-black border-black text-white'
-                : 'bg-white border-black/20 hover:border-black text-black'
+                ? 'bg-pink-800 border-pink-800 text-white'
+                : 'bg-white border-pink-800/20 hover:border-pink-800 text-pink-900'
             }`}
             title="Single Bead Pen (P)"
           >
@@ -1368,8 +1368,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             onClick={() => onSelectTool('fill')}
             className={`p-1.5 border rounded flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
               activeTool === 'fill'
-                ? 'bg-black border-black text-white'
-                : 'bg-white border-black/20 hover:border-black text-black'
+                ? 'bg-pink-800 border-pink-800 text-white'
+                : 'bg-white border-pink-800/20 hover:border-pink-800 text-pink-900'
             }`}
             title="Flood Bucket (F)"
           >
@@ -1382,8 +1382,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             onClick={() => onSelectTool('eyedropper')}
             className={`p-1.5 border rounded flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
               activeTool === 'eyedropper'
-                ? 'bg-black border-black text-white'
-                : 'bg-white border-black/20 hover:border-black text-black'
+                ? 'bg-pink-800 border-pink-800 text-white'
+                : 'bg-white border-pink-800/20 hover:border-pink-800 text-pink-900'
             }`}
             title="Eyedropper Color Pick (E)"
           >
@@ -1396,8 +1396,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             onClick={() => onSelectTool('text')}
             className={`p-1.5 border rounded flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
               activeTool === 'text'
-                ? 'bg-black border-black text-white'
-                : 'bg-white border-black/20 hover:border-black text-black'
+                ? 'bg-pink-800 border-pink-800 text-white'
+                : 'bg-white border-pink-800/20 hover:border-pink-800 text-pink-900'
             }`}
             title="Direct Pixel Text & Lettering Tool (T)"
           >
@@ -1408,7 +1408,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <button
             id="tool-replace-btn"
             onClick={onOpenReplaceModal}
-            className="p-1.5 border border-black/20 hover:border-black rounded flex flex-col items-center justify-center gap-1 bg-white text-black transition-all cursor-pointer"
+            className="p-1.5 border border-pink-800/20 hover:border-pink-800 rounded flex flex-col items-center justify-center gap-1 bg-white text-pink-900 transition-all cursor-pointer"
             title="Replace Color Across Whole Board (R)"
           >
             <RefreshCw className="w-3.5 h-3.5" />
@@ -1417,10 +1417,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Active Color Banner */}
-        <div className="p-3 border border-black rounded-lg bg-[#FAF9F6] flex items-center justify-between mb-3 shadow-xs">
-          <div className="flex items-center gap-2.5">
+        <div className="p-4 border-2 border-pink-800 rounded-lg bg-white flex items-center justify-between mb-3 shadow-sm">
+          <div className="flex items-center gap-3">
             <div
-              className="w-8 h-8 rounded-full border-2 border-black shadow-xs flex items-center justify-center shrink-0 font-mono text-[9px] font-bold"
+              className="w-10 h-10 rounded-lg border-2 border-pink-800 shadow-xs flex items-center justify-center shrink-0 font-mono text-[9px] font-bold transition-all hover:scale-110"
               style={{
                 backgroundColor: activeColor.hex,
                 color: (activeColor.rgb[0] * 299 + activeColor.rgb[1] * 587 + activeColor.rgb[2] * 114) / 1000 < 135 ? '#fff' : '#000',
@@ -1428,35 +1428,35 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               {activeColor.code || ''}
             </div>
-            <div>
-              <div className="text-[9px] uppercase font-mono text-gray-500 flex items-center gap-1">
-                <span>{BRAND_INFO[settings.brand]?.name}</span>
+            <div className="flex-1">
+              <div className="text-[9px] uppercase font-mono text-pink-500 flex items-center gap-1">
+                <span>Brush</span>
                 {activeColor.series && (
-                  <span className="bg-gray-200 text-gray-800 px-1 rounded text-[8px]">
+                  <span className="bg-pink-800 text-white px-1.5 rounded text-[8px] font-bold">
                     {activeColor.series}
                   </span>
                 )}
               </div>
-              <div className="text-xs font-bold text-black truncate max-w-[130px]">
+              <div className="text-sm font-bold text-pink-900 truncate max-w-[140px]">
                 {activeColor.name}
               </div>
+              <div className="text-[9px] font-mono text-pink-600 font-bold">
+                {activeColor.hex}
+              </div>
             </div>
-          </div>
-          <div className="text-right font-mono text-[10px] text-gray-700 font-bold">
-            {activeColor.hex}
           </div>
         </div>
 
         {/* Brand Palette Swatches & Search */}
         <div>
           <div className="relative mb-2">
-            <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-pink-400" />
             <input
               type="text"
               placeholder={`Search ${BRAND_INFO[settings.brand]?.name} (${activeBrandPalette.length})...`}
               value={paletteSearch}
               onChange={(e) => setPaletteSearch(e.target.value)}
-              className="w-full pl-8 pr-3 py-1.5 border border-black/20 rounded text-xs focus:outline-none focus:border-black"
+              className="w-full pl-8 pr-3 py-1.5 border border-pink-800/20 rounded text-xs focus:outline-none focus:border-pink-800"
             />
           </div>
 
@@ -1466,15 +1466,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onClick={() => setOnlyUsedOnBoard((prev) => !prev)}
               className={`px-2 py-0.5 rounded text-[9px] font-mono border flex items-center gap-1 cursor-pointer transition-colors ${
                 onlyUsedOnBoard
-                  ? 'bg-black text-white border-black font-bold'
-                  : 'bg-white text-gray-700 border-black/20 hover:border-black'
+                  ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                  : 'bg-white text-pink-900 border-pink-800/20 hover:border-pink-800'
               }`}
             >
               <Layers className="w-2.5 h-2.5" />
               <span>Used on Board ({usedColorIds.size})</span>
             </button>
-            <span className="text-[9px] font-mono text-gray-400">
-              Showing {filteredColors.length}
+            <span className="text-[9px] font-mono text-pink-400 bg-rose-50 px-2 py-0.5 rounded border border-pink-200">
+              {filteredColors.length} color{filteredColors.length !== 1 ? 's' : ''} found
             </span>
           </div>
 
@@ -1486,8 +1486,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   onClick={() => setSelectedMardSeries('all')}
                   className={`px-2 py-0.5 rounded text-[9px] font-mono border whitespace-nowrap cursor-pointer transition-colors ${
                     selectedMardSeries === 'all'
-                      ? 'bg-black text-white border-black font-bold'
-                      : 'bg-white text-black border-black/20 hover:border-black'
+                      ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                      : 'bg-white text-pink-900 border-pink-800/20 hover:border-pink-800'
                   }`}
                 >
                   All (221)
@@ -1499,8 +1499,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     title={`${s.name} (${s.count} colors)`}
                     className={`px-2 py-0.5 rounded text-[9px] font-mono border whitespace-nowrap cursor-pointer transition-colors ${
                       selectedMardSeries === s.seriesId
-                        ? 'bg-black text-white border-black font-bold'
-                        : 'bg-white text-black border-black/20 hover:border-black'
+                        ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                        : 'bg-white text-pink-900 border-pink-800/20 hover:border-pink-800'
                     }`}
                   >
                     {s.seriesId} {s.name.slice(0, 2)} ({s.count})
@@ -1511,43 +1511,51 @@ export const Sidebar: React.FC<SidebarProps> = ({
           )}
 
           {/* Color Grid with High-Contrast MARD Codes */}
-          <div className="grid grid-cols-5 sm:grid-cols-6 gap-1.5 max-h-52 overflow-y-auto p-1.5 bg-[#FAF9F6] border border-black/20 rounded">
-            {filteredColors.map((color) => {
-              const isSelected = activeColor.id === color.id;
-              const isDark = (color.rgb[0] * 299 + color.rgb[1] * 587 + color.rgb[2] * 114) / 1000 < 135;
-              const isUsed = usedColorIds.has(color.id);
+          {filteredColors.length > 0 ? (
+            <div className="grid grid-cols-5 sm:grid-cols-6 gap-1.5 max-h-52 overflow-y-auto p-1.5 bg-rose-50 border border-pink-200 rounded animate-fade-in">
+              {filteredColors.map((color) => {
+                const isSelected = activeColor.id === color.id;
+                const isDark = (color.rgb[0] * 299 + color.rgb[1] * 587 + color.rgb[2] * 114) / 1000 < 135;
+                const isUsed = usedColorIds.has(color.id);
 
-              return (
-                <button
-                  key={color.id}
-                  onClick={() => onSelectColor(color)}
-                  title={`${color.name} (${color.code || color.hex})${
-                    color.series ? ` · ${color.series}` : ''
-                  }${isUsed ? ' • [On Canvas]' : ''}`}
-                  className={`h-8 rounded border transition-all cursor-pointer flex flex-col items-center justify-center relative overflow-hidden ${
-                    isSelected
-                      ? 'border-black ring-2 ring-black scale-105 z-10 shadow-xs'
-                      : 'border-black/30 hover:scale-105'
-                  }`}
-                  style={{ backgroundColor: color.hex }}
-                >
-                  <span
-                    className="font-mono text-[8.5px] font-bold leading-none select-none"
-                    style={{ color: isDark ? '#FFFFFF' : '#111111' }}
+                return (
+                  <button
+                    key={color.id}
+                    onClick={() => onSelectColor(color)}
+                    title={`${color.name} (${color.code || color.hex})${
+                      color.series ? ` · ${color.series}` : ''
+                    }${isUsed ? ' • [On Canvas]' : ''}`}
+                    className={`h-8 rounded-lg border transition-all cursor-pointer flex flex-col items-center justify-center relative overflow-hidden group ${
+                      isSelected
+                        ? 'border-pink-800 ring-2 ring-black scale-105 z-10 shadow-md'
+                        : 'border-pink-800/30 hover:scale-110 hover:shadow-sm hover:border-pink-800'
+                    }`}
+                    style={{ backgroundColor: color.hex }}
                   >
-                    {color.code || color.hex.slice(1, 4)}
-                  </span>
-                  {isUsed && (
-                    <div
-                      className={`w-1.5 h-1.5 rounded-full mt-0.5 ${
-                        isDark ? 'bg-amber-300' : 'bg-black'
-                      }`}
-                    />
-                  )}
-                </button>
-              );
-            })}
-          </div>
+                    <span
+                      className="font-mono text-[8.5px] font-bold leading-none select-none group-hover:opacity-80 transition-opacity"
+                      style={{ color: isDark ? '#FFFFFF' : '#111111' }}
+                    >
+                      {color.code || color.hex.slice(1, 4)}
+                    </span>
+                    {isUsed && (
+                      <div
+                        className={`w-1.5 h-1.5 rounded-full mt-0.5 ${
+                          isDark ? 'bg-pink-200' : 'bg-pink-800'
+                        }`}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="p-6 bg-rose-50 border border-pink-200 rounded text-center flex flex-col items-center justify-center min-h-32">
+              <Search className="w-5 h-5 text-pink-400 mb-2" />
+              <p className="text-xs font-bold text-pink-600 mb-1">No colors found</p>
+              <p className="text-[9px] text-pink-500">Try a different search or filter</p>
+            </div>
+          )}
         </div>
       </div>
     </aside>

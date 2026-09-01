@@ -239,24 +239,24 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs select-none">
-      <div className="bg-white rounded-xl shadow-2xl border-2 border-black w-full max-w-5xl max-h-[94vh] flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-pink-800/60 backdrop-blur-xs select-none">
+      <div className="bg-white rounded-xl shadow-2xl border-2 border-pink-800 w-full max-w-5xl max-h-[94vh] flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="p-5 border-b border-black bg-white flex items-center justify-between">
+        <div className="p-5 border-b border-pink-800 bg-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-black text-white rounded-lg">
-              <Layers className="w-5 h-5 text-amber-300" />
+            <div className="p-2.5 bg-pink-800 text-white rounded-lg">
+              <Layers className="w-5 h-5 text-pink-300" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase font-mono font-bold tracking-widest text-gray-500">
+                <span className="text-[10px] uppercase font-mono font-bold tracking-widest text-pink-500">
                   Assembly Guide • Standard 29×29 Pegboards
                 </span>
-                <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-black text-white">
+                <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-pink-800 text-white">
                   {subBoards.length} Total Pegboards ({cols}×{rows} grid)
                 </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-serif italic font-bold text-black">
+              <h2 className="text-xl sm:text-2xl font-serif italic font-bold text-pink-900">
                 Multi-Pegboard Assembly & Board-by-Board Navigator
               </h2>
             </div>
@@ -264,24 +264,24 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 border border-transparent hover:border-black rounded-lg transition-colors cursor-pointer"
+            className="p-2 hover:bg-rose-100 border border-transparent hover:border-pink-800 rounded-lg transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5 text-black" />
+            <X className="w-5 h-5 text-pink-900" />
           </button>
         </div>
 
         {/* Content Body: Left Minimap & Info, Right Zoomed Board Canvas */}
-        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden bg-gray-50/50">
+        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden bg-rose-50/50">
           {/* Left Column: Board Minimap & Specs */}
-          <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-r border-black p-5 bg-white flex flex-col justify-between overflow-y-auto space-y-4">
+          <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-r border-pink-800 p-5 bg-white flex flex-col justify-between overflow-y-auto space-y-4">
             <div>
-              <label className="text-[10px] uppercase font-mono font-bold tracking-wider text-black block mb-2">
+              <label className="text-[10px] uppercase font-mono font-bold tracking-wider text-pink-900 block mb-2">
                 1. Select Pegboard Unit:
               </label>
 
               {/* Interactive Minimap Grid */}
               <div
-                className="grid gap-2 p-3 bg-gray-100 border border-black/20 rounded-xl mb-4"
+                className="grid gap-2 p-3 bg-rose-100 border border-pink-800/20 rounded-xl mb-4"
                 style={{
                   gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
                 }}
@@ -294,8 +294,8 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
                       onClick={() => setActiveBoardId(b.id)}
                       className={`p-3 rounded-lg border-2 transition-all text-center flex flex-col items-center justify-center cursor-pointer ${
                         isSelected
-                          ? 'border-black bg-black text-white shadow-md scale-102'
-                          : 'border-black/30 bg-white text-black hover:border-black hover:bg-amber-50'
+                          ? 'border-pink-800 bg-pink-800 text-white shadow-md scale-102'
+                          : 'border-pink-800/30 bg-white text-pink-900 hover:border-pink-800 hover:bg-pink-50'
                       }`}
                     >
                       <span className="text-base font-bold font-mono">
@@ -303,14 +303,14 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
                       </span>
                       <span
                         className={`text-[9px] font-mono mt-0.5 ${
-                          isSelected ? 'text-amber-300' : 'text-gray-500'
+                          isSelected ? 'text-pink-300' : 'text-pink-500'
                         }`}
                       >
                         {b.width}×{b.height} pegs
                       </span>
                       <span
                         className={`text-[8.5px] font-mono ${
-                          isSelected ? 'text-gray-300' : 'text-gray-400'
+                          isSelected ? 'text-gray-300' : 'text-pink-400'
                         }`}
                       >
                         {b.totalBeads} beads
@@ -322,24 +322,24 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
 
               {/* Active Board Details */}
               {activeBoard && (
-                <div className="p-3.5 bg-amber-50/60 border border-amber-300 rounded-xl space-y-2 text-xs font-mono">
-                  <div className="flex justify-between font-bold text-black border-b border-amber-200 pb-1.5">
+                <div className="p-3.5 bg-pink-50/60 border border-pink-300 rounded-xl space-y-2 text-xs font-mono">
+                  <div className="flex justify-between font-bold text-pink-900 border-b border-pink-200 pb-1.5">
                     <span>Active Selection:</span>
                     <span>Board {activeBoard.id}</span>
                   </div>
-                  <div className="flex justify-between text-gray-700">
+                  <div className="flex justify-between text-pink-700">
                     <span>Global Span:</span>
                     <span>
                       X: {activeBoard.startX + 1}–{activeBoard.startX + activeBoard.width}
                     </span>
                   </div>
-                  <div className="flex justify-between text-gray-700">
+                  <div className="flex justify-between text-pink-700">
                     <span>Vertical Span:</span>
                     <span>
                       Y: {activeBoard.startY + 1}–{activeBoard.startY + activeBoard.height}
                     </span>
                   </div>
-                  <div className="flex justify-between text-black font-bold">
+                  <div className="flex justify-between text-pink-900 font-bold">
                     <span>Board Beads:</span>
                     <span>{activeBoard.totalBeads.toLocaleString()} pcs</span>
                   </div>
@@ -348,10 +348,10 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
 
               {/* Material List for this board */}
               <div className="mt-4">
-                <label className="text-[10px] uppercase font-mono font-bold tracking-wider text-black block mb-1.5">
+                <label className="text-[10px] uppercase font-mono font-bold tracking-wider text-pink-900 block mb-1.5">
                   Colors for Board {activeBoard?.id} ({subBoardMaterials.length} shades):
                 </label>
-                <div className="max-h-36 overflow-y-auto divide-y divide-gray-100 border border-black/20 rounded-lg bg-white p-1">
+                <div className="max-h-36 overflow-y-auto divide-y divide-gray-100 border border-pink-800/20 rounded-lg bg-white p-1">
                   {subBoardMaterials.map((m) => (
                     <div
                       key={m.colorId}
@@ -359,17 +359,17 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
                     >
                       <div className="flex items-center gap-2">
                         <div
-                          className="w-3 h-3 rounded-full border border-black/30 shrink-0"
+                          className="w-3 h-3 rounded-full border border-pink-800/30 shrink-0"
                           style={{ backgroundColor: m.hex }}
                         />
                         <span className="font-mono font-bold text-[10px]">
                           [{m.code || m.hex.slice(1, 4)}]
                         </span>
-                        <span className="truncate max-w-[100px] text-gray-800">
+                        <span className="truncate max-w-[100px] text-pink-800">
                           {m.name}
                         </span>
                       </div>
-                      <span className="font-mono font-bold text-black">
+                      <span className="font-mono font-bold text-pink-900">
                         {m.count}
                       </span>
                     </div>
@@ -379,12 +379,12 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
             </div>
 
             {/* Export Buttons */}
-            <div className="space-y-2 pt-2 border-t border-black/10">
+            <div className="space-y-2 pt-2 border-t border-pink-800/10">
               <button
                 type="button"
                 id="export-single-board-png-btn"
                 onClick={handleExportSubBoardPng}
-                className="w-full py-2 bg-black hover:bg-neutral-800 text-white rounded-lg font-bold text-[11px] uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                className="w-full py-2 bg-pink-800 hover:bg-pink-800 text-white rounded-lg font-bold text-[11px] uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Export Board {activeBoard?.id} PNG</span>
@@ -393,7 +393,7 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="w-full py-2 bg-white hover:bg-gray-100 border border-black text-black rounded-lg font-bold text-[11px] uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-2 bg-white hover:bg-rose-100 border border-pink-800 text-pink-900 rounded-lg font-bold text-[11px] uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Printer className="w-3.5 h-3.5" />
                 <span>Print Assembly Sheet</span>
@@ -405,36 +405,36 @@ export const PegboardAssemblyModal: React.FC<PegboardAssemblyModalProps> = ({
           <div className="flex-1 flex flex-col p-4 sm:p-6 overflow-hidden">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <span className="font-mono font-bold text-sm text-black">
+                <span className="font-mono font-bold text-sm text-pink-900">
                   Pegboard {activeBoard?.id} Detailed Bead Layout
                 </span>
-                <span className="text-[10px] font-mono text-gray-500 bg-gray-200 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-mono text-pink-500 bg-rose-200 px-2 py-0.5 rounded">
                   Local Coordinates (1–{activeBoard?.width})
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-gray-500">
+              <span className="text-[10px] font-mono text-pink-500">
                 Printed beads show MARD color codes
               </span>
             </div>
 
-            <div className="flex-1 overflow-auto bg-white border border-black rounded-xl p-4 flex items-center justify-center shadow-inner">
+            <div className="flex-1 overflow-auto bg-white border border-pink-800 rounded-xl p-4 flex items-center justify-center shadow-inner">
               <canvas
                 ref={subBoardCanvasRef}
-                className="shadow-md border border-black/20 max-w-full h-auto"
+                className="shadow-md border border-pink-800/20 max-w-full h-auto"
               />
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-black bg-white flex items-center justify-between font-mono text-xs">
-          <span className="text-gray-500">
+        <div className="p-4 border-t border-pink-800 bg-white flex items-center justify-between font-mono text-xs">
+          <span className="text-pink-500">
             Tip: Standard interlocking pegboards snap together seamlessly. Assemble one board at a time!
           </span>
 
           <button
             onClick={onClose}
-            className="px-5 py-2 bg-gray-100 hover:bg-gray-200 text-black rounded-lg font-bold text-xs uppercase transition-colors cursor-pointer"
+            className="px-5 py-2 bg-rose-100 hover:bg-rose-200 text-pink-900 rounded-lg font-bold text-xs uppercase transition-colors cursor-pointer"
           >
             Close
           </button>

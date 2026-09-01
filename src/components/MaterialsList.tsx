@@ -60,6 +60,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
   const [selectedSeriesFilter, setSelectedSeriesFilter] = useState<string>('all');
   const [sortMode, setSortMode] = useState<'count' | 'code' | 'name' | 'deficit'>('count');
   const [isExportingPdf, setIsExportingPdf] = useState(false);
+  const [isExportDropdownOpen, setIsExportDropdownOpen] = useState(false);
 
   const totalBeads = materials.reduce((sum, item) => sum + item.count, 0);
   const totalColors = materials.length;
@@ -161,35 +162,35 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
   const maxMaterialCount = materials.length > 0 ? Math.max(...materials.map((m) => m.count)) : 1;
 
   return (
-    <div className="bg-white border-t border-black flex flex-col font-sans select-none">
+    <div className="bg-white border-t border-pink-800 flex flex-col font-sans select-none">
       {/* Header & Export Action Banner */}
-      <div className="p-6 sm:p-8 border-b border-black flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div className="p-6 sm:p-8 border-b border-pink-800 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400">
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-pink-400">
               Palette & Specifications
             </p>
             {isMardBrand && (
-              <span className="text-[9px] bg-black text-amber-300 px-1.5 py-0.5 rounded font-mono font-bold flex items-center gap-1">
-                <Star className="w-2.5 h-2.5 fill-amber-300" /> MARD 221 Standard
+              <span className="text-[9px] bg-pink-800 text-white px-1.5 py-0.5 rounded font-mono font-bold flex items-center gap-1">
+                <Star className="w-2.5 h-2.5 fill-white" /> MARD 221 Standard
               </span>
             )}
           </div>
-          <h2 className="text-2xl sm:text-3xl font-serif italic font-bold leading-none text-[#1A1A1A]">
+          <h2 className="text-2xl sm:text-3xl font-serif italic font-bold leading-none text-pink-900">
             Materials & Palette Breakdown
           </h2>
         </div>
 
-        {/* Studio Export Buttons */}
+        {/* Studio Export Buttons - Unified Dropdown */}
         <div className="flex flex-wrap items-center gap-2">
           {onOpenInventoryModal && (
             <button
               id="open-inventory-from-materials-btn"
               onClick={onOpenInventoryModal}
-              className="bg-amber-100 hover:bg-amber-200 border border-amber-400 text-amber-950 px-3.5 py-2 text-[11px] font-mono font-bold uppercase tracking-wider rounded-lg shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="bg-pink-100 hover:bg-pink-200 border border-pink-400 text-pink-950 px-3.5 py-2 text-[11px] font-mono font-bold uppercase tracking-wider rounded-lg shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
               title="Track physical bead inventory stock"
             >
-              <Boxes className="w-3.5 h-3.5 text-amber-900" />
+              <Boxes className="w-3.5 h-3.5 text-pink-900" />
               <span>Inventory Stock</span>
             </button>
           )}
@@ -198,7 +199,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
             <button
               id="open-assembly-from-materials-btn"
               onClick={onOpenAssemblyModal}
-              className="bg-neutral-900 hover:bg-black text-amber-300 border border-black px-3.5 py-2 text-[11px] font-mono font-bold uppercase tracking-wider rounded-lg shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="bg-pink-900 hover:bg-pink-950 text-pink-100 border border-pink-900 px-3.5 py-2 text-[11px] font-mono font-bold uppercase tracking-wider rounded-lg shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
               title="Split into 29x29 interlocking pegboard modules"
             >
               <Layers className="w-3.5 h-3.5" />
@@ -206,50 +207,81 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
             </button>
           )}
 
-          <button
-            id="download-png-btn"
-            onClick={handleDownloadPng}
-            className="bg-white hover:bg-[#FAF9F6] border border-black px-4 py-2 text-[11px] font-bold uppercase tracking-wider rounded-lg shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
-          >
-            <Download className="w-3.5 h-3.5 text-black" />
-            <span>Export PNG</span>
-          </button>
+          {/* Export Dropdown Menu */}
+          <div className="relative">
+            <button
+              onClick={() => setIsExportDropdownOpen(!isExportDropdownOpen)}
+              className="bg-pink-800 hover:bg-pink-900 text-white border border-pink-800 px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded-lg shadow-xs transition-all flex items-center gap-2 cursor-pointer hover:shadow-md"
+              title="Download pattern files"
+            >
+              <Download className={`w-3.5 h-3.5 ${isExportingPdf ? 'animate-pulse-subtle' : ''}`} />
+              <span>Export</span>
+              <svg
+                className={`w-3 h-3 transition-transform ${isExportDropdownOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </button>
 
-          <button
-            id="download-pdf-btn"
-            onClick={handleDownloadPdf}
-            disabled={isExportingPdf}
-            className="bg-black hover:bg-neutral-800 disabled:opacity-40 text-white border border-black px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded-lg shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
-          >
-            <FileText className="w-3.5 h-3.5" />
-            <span>{isExportingPdf ? 'Exporting PDF...' : 'Export PDF'}</span>
-          </button>
-
-          <button
-            id="download-csv-btn"
-            onClick={handleDownloadCsv}
-            className="bg-white hover:bg-[#FAF9F6] border border-black px-3.5 py-2 text-[11px] font-bold uppercase rounded-lg transition-colors cursor-pointer"
-            title="Download CSV Shopping List"
-          >
-            <FileSpreadsheet className="w-3.5 h-3.5 text-black" />
-          </button>
-
-          <button
-            id="print-pattern-btn"
-            onClick={handlePrint}
-            className="bg-white hover:bg-[#FAF9F6] border border-black p-2 text-[11px] rounded-lg transition-colors cursor-pointer"
-            title="Print Studio Sheet"
-          >
-            <Printer className="w-3.5 h-3.5 text-black" />
-          </button>
+            {isExportDropdownOpen && (
+              <div className="absolute right-0 mt-1 w-48 bg-white border-2 border-pink-800 rounded-lg shadow-lg z-40 overflow-hidden animate-slide-down">
+                <button
+                  onClick={() => {
+                    handleDownloadPng();
+                    setIsExportDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2.5 hover:bg-rose-50 flex items-center gap-2 text-sm font-bold text-pink-900 border-b border-pink-800/10 transition-colors cursor-pointer"
+                >
+                  <Download className="w-4 h-4" />
+                  Export PNG
+                </button>
+                <button
+                  onClick={() => {
+                    handleDownloadPdf();
+                    setIsExportDropdownOpen(false);
+                  }}
+                  disabled={isExportingPdf}
+                  className="w-full text-left px-4 py-2.5 hover:bg-rose-50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-sm font-bold text-pink-900 border-b border-pink-200 transition-colors cursor-pointer"
+                >
+                  <FileText className={`w-4 h-4 ${isExportingPdf ? 'animate-pulse-subtle' : ''}`} />
+                  {isExportingPdf ? 'Exporting PDF...' : 'Export PDF'}
+                </button>
+                <button
+                  onClick={() => {
+                    handleDownloadCsv();
+                    setIsExportDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2.5 hover:bg-rose-50 flex items-center gap-2 text-sm font-bold text-pink-900 border-b border-pink-800/10 transition-colors cursor-pointer"
+                  title="Download CSV Shopping List"
+                >
+                  <FileSpreadsheet className="w-4 h-4" />
+                  Export CSV
+                </button>
+                <button
+                  onClick={() => {
+                    handlePrint();
+                    setIsExportDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2.5 hover:bg-rose-50 flex items-center gap-2 text-sm font-bold text-pink-900 transition-colors cursor-pointer"
+                  title="Print Studio Sheet"
+                >
+                  <Printer className="w-4 h-4" />
+                  Print
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       {/* MARD 221 Series Ribbon Showcase */}
       {isMardBrand && seriesBreakdown.length > 0 && (
-        <div className="px-6 py-3 bg-[#FAF9F6] border-b border-black flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div className="px-6 py-3 bg-rose-50 border-b border-pink-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase font-bold text-gray-500">
+            <span className="font-mono text-[10px] uppercase font-bold text-pink-500">
               Active MARD Series:
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -263,8 +295,8 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                   }
                   className={`px-2 py-0.5 rounded text-[9.5px] font-mono border transition-all cursor-pointer ${
                     selectedSeriesFilter === s.seriesId
-                      ? 'bg-black text-white border-black font-bold shadow-xs'
-                      : 'bg-white text-black border-black/20 hover:border-black'
+                      ? 'bg-pink-800 text-white border-pink-800 font-bold shadow-xs'
+                      : 'bg-white text-pink-900 border-pink-800/20 hover:border-pink-800'
                   }`}
                 >
                   <span className="font-bold">[{s.seriesId}]</span> {s.name.slice(0, 2)} ({s.usedShadesCount}/{s.count})
@@ -277,7 +309,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
             {selectedSeriesFilter !== 'all' && (
               <button
                 onClick={() => setSelectedSeriesFilter('all')}
-                className="text-[10px] font-mono underline text-gray-600 hover:text-black cursor-pointer"
+                className="text-[10px] font-mono underline text-pink-600 hover:text-pink-900 cursor-pointer"
               >
                 Clear Filter
               </button>
@@ -288,15 +320,15 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
 
       {/* Filter / Highlight Active Bar */}
       {highlightedColorId && (
-        <div className="px-6 py-3 bg-amber-50 border-b border-amber-200 flex items-center justify-between text-xs font-mono">
-          <div className="flex items-center gap-2 text-amber-900 font-bold">
-            <Sparkles className="w-4 h-4 text-amber-700" />
+        <div className="px-6 py-3 bg-pink-50 border-b border-pink-200 flex items-center justify-between text-xs font-mono">
+          <div className="flex items-center gap-2 text-pink-900 font-bold">
+            <Sparkles className="w-4 h-4 text-pink-700" />
             <span>SOLO ISOLATION: Dimming non-matching beads on canvas board</span>
           </div>
           <button
             id="clear-highlight-btn"
             onClick={() => onToggleHighlight(null)}
-            className="font-bold underline hover:opacity-70 uppercase tracking-wider text-[11px] cursor-pointer text-amber-950"
+            className="font-bold underline hover:opacity-70 uppercase tracking-wider text-[11px] cursor-pointer text-pink-950"
           >
             Show Full Board
           </button>
@@ -304,31 +336,31 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
       )}
 
       {/* Controls Bar: Search & Sort */}
-      <div className="px-6 py-3 bg-white border-b border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="px-6 py-3 bg-white border-b border-pink-200 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <input
             type="text"
             placeholder="Filter palette by name, code (e.g. A14), or series..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-3 py-1.5 border border-black/20 rounded-lg text-xs w-full sm:w-80 focus:outline-none focus:border-black"
+            className="px-3 py-1.5 border border-pink-800/20 rounded-lg text-xs w-full sm:w-80 focus:outline-none focus:border-pink-800"
           />
-          <span className="text-[10px] font-mono text-gray-400 whitespace-nowrap">
+          <span className="text-[10px] font-mono text-pink-400 whitespace-nowrap">
             {filteredAndSorted.length} of {materials.length} colors
           </span>
         </div>
 
         {/* Sort Options */}
         <div className="flex items-center gap-1.5 text-xs self-end sm:self-auto font-mono">
-          <span className="text-gray-400 text-[10px] uppercase font-bold flex items-center gap-1">
+          <span className="text-pink-400 text-[10px] uppercase font-bold flex items-center gap-1">
             <ArrowUpDown className="w-3 h-3" /> Sort:
           </span>
           <button
             onClick={() => setSortMode('count')}
             className={`px-2 py-1 rounded text-[10px] border cursor-pointer ${
               sortMode === 'count'
-                ? 'bg-black text-white border-black font-bold'
-                : 'bg-white text-gray-700 border-gray-200 hover:border-black'
+                ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                : 'bg-white text-pink-700 border-pink-200 hover:border-pink-800'
             }`}
           >
             Count
@@ -337,8 +369,8 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
             onClick={() => setSortMode('code')}
             className={`px-2 py-1 rounded text-[10px] border cursor-pointer ${
               sortMode === 'code'
-                ? 'bg-black text-white border-black font-bold'
-                : 'bg-white text-gray-700 border-gray-200 hover:border-black'
+                ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                : 'bg-white text-pink-700 border-pink-200 hover:border-pink-800'
             }`}
           >
             MARD Code
@@ -347,8 +379,8 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
             onClick={() => setSortMode('name')}
             className={`px-2 py-1 rounded text-[10px] border cursor-pointer ${
               sortMode === 'name'
-                ? 'bg-black text-white border-black font-bold'
-                : 'bg-white text-gray-700 border-gray-200 hover:border-black'
+                ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                : 'bg-white text-pink-700 border-pink-200 hover:border-pink-800'
             }`}
           >
             Name
@@ -357,8 +389,8 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
             onClick={() => setSortMode('deficit')}
             className={`px-2 py-1 rounded text-[10px] border cursor-pointer ${
               sortMode === 'deficit'
-                ? 'bg-black text-white border-black font-bold'
-                : 'bg-white text-amber-900 border-amber-300 hover:border-black'
+                ? 'bg-pink-800 text-white border-pink-800 font-bold'
+                : 'bg-white text-pink-900 border-pink-300 hover:border-pink-800'
             }`}
           >
             Missing Deficit
@@ -371,27 +403,27 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
         {/* Table Column */}
         <div className="flex-1 overflow-x-auto">
           <table className="w-full text-left border-collapse">
-            <thead className="bg-gray-50 sticky top-0 z-10 border-b border-black">
+            <thead className="bg-rose-50 sticky top-0 z-10 border-b border-pink-800">
               <tr>
-                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-black w-10 text-center">
+                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-pink-800 w-10 text-center">
                   #
                 </th>
-                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-black w-24">
+                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-pink-800 w-24">
                   Code
                 </th>
-                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-black">
+                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-pink-800">
                   Bead Color
                 </th>
-                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-black text-right w-24">
+                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-pink-800 text-right w-24">
                   Needed
                 </th>
-                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-black w-36">
+                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-pink-800 w-36">
                   In Stock
                 </th>
-                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-black w-36">
+                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-pink-800 w-36">
                   Share
                 </th>
-                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-black text-center w-28">
+                <th className="p-3.5 text-[9px] uppercase tracking-widest font-bold border-b border-pink-800 text-center w-28">
                   Actions
                 </th>
               </tr>
@@ -409,21 +441,21 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                   <tr
                     key={item.color.id}
                     id={`material-row-${item.color.id}`}
-                    className={`hover:bg-[#FAF9F6] transition-colors ${
-                      isCurrentHighlight ? 'bg-amber-50/60 font-bold' : ''
+                    className={`hover:bg-rose-50 transition-colors ${
+                      isCurrentHighlight ? 'bg-pink-50/60 font-bold' : ''
                     }`}
                   >
-                    <td className="p-3.5 text-center font-mono text-xs text-gray-400">
+                    <td className="p-3.5 text-center font-mono text-xs text-pink-400">
                       {idx + 1}
                     </td>
 
                     {/* MARD / Brand Code Badge */}
                     <td className="p-3.5">
                       <div
-                        className="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[10px] font-bold border border-black/30 shadow-2xs"
+                        className="inline-flex items-center justify-center px-2 py-0.5 rounded font-mono text-[10px] font-bold border border-pink-800/30 shadow-2xs"
                         style={{
                           backgroundColor: item.color.hex,
-                          color: isDark ? '#FFFFFF' : '#000000',
+                          color: isDark ? '#FFFFFF' : '#be185d',
                         }}
                       >
                         {item.color.code || item.color.hex.slice(1, 4)}
@@ -434,14 +466,14 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                     <td className="p-3.5">
                       <div className="flex items-center gap-2">
                         <div
-                          className="w-3.5 h-3.5 rounded-full border border-black shrink-0"
+                          className="w-3.5 h-3.5 rounded-full border border-pink-800 shrink-0"
                           style={{ backgroundColor: item.color.hex }}
                         />
-                        <span className="text-xs font-semibold text-[#1A1A1A]">
+                        <span className="text-xs font-semibold text-pink-900">
                           {item.color.name}
                         </span>
                         {item.color.series && (
-                          <span className="text-[8.5px] font-mono text-gray-600 bg-gray-100 px-1.5 py-0.2 rounded border border-gray-200">
+                          <span className="text-[8.5px] font-mono text-pink-600 bg-rose-100 px-1.5 py-0.2 rounded border border-pink-200">
                             {item.color.series}
                           </span>
                         )}
@@ -449,7 +481,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                     </td>
 
                     {/* Needed Count */}
-                    <td className="p-3.5 text-xs text-right font-mono font-bold text-[#1A1A1A]">
+                    <td className="p-3.5 text-xs text-right font-mono font-bold text-pink-900">
                       {item.count.toLocaleString()}
                     </td>
 
@@ -460,8 +492,8 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                           <ShoppingCart className="w-2.5 h-2.5" /> Need {deficitCount}
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 font-mono text-[9.5px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
-                          <CheckCircle2 className="w-2.5 h-2.5 text-emerald-600" /> In Stock ({stock})
+                        <span className="inline-flex items-center gap-1 font-mono text-[9.5px] font-bold text-pink-800 bg-pink-50 border border-pink-200 px-2 py-0.5 rounded">
+                          <CheckCircle2 className="w-2.5 h-2.5 text-pink-600" /> In Stock ({stock})
                         </span>
                       )}
                     </td>
@@ -469,7 +501,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                     {/* Share Bar */}
                     <td className="p-3.5">
                       <div className="flex items-center gap-2">
-                        <div className="flex-1 bg-gray-100 h-2 rounded-full overflow-hidden border border-gray-200">
+                        <div className="flex-1 bg-rose-100 h-2 rounded-full overflow-hidden border border-pink-200">
                           <div
                             className="h-full rounded-full"
                             style={{
@@ -478,7 +510,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                             }}
                           />
                         </div>
-                        <span className="font-mono text-[10px] text-gray-500 w-8 text-right">
+                        <span className="font-mono text-[10px] text-pink-500 w-8 text-right">
                           {item.percentage.toFixed(1)}%
                         </span>
                       </div>
@@ -494,8 +526,8 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                           title={isCurrentHighlight ? 'Clear highlight' : 'Isolate color on board'}
                           className={`p-1 rounded border transition-colors cursor-pointer ${
                             isCurrentHighlight
-                              ? 'bg-black text-white border-black'
-                              : 'bg-white text-black border-black/30 hover:border-black'
+                              ? 'bg-pink-800 text-white border-pink-800'
+                              : 'bg-white text-pink-900 border-pink-800/30 hover:border-pink-800'
                           }`}
                         >
                           {isCurrentHighlight ? (
@@ -507,7 +539,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                         <button
                           onClick={() => onSelectColor(item.color)}
                           title="Set as active drawing color"
-                          className="p-1 rounded bg-white text-black border border-black/30 hover:border-black transition-colors cursor-pointer"
+                          className="p-1 rounded bg-white text-pink-900 border border-pink-800/30 hover:border-pink-800 transition-colors cursor-pointer"
                         >
                           <Paintbrush className="w-3 h-3" />
                         </button>
@@ -515,7 +547,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                           <button
                             onClick={() => onOpenReplaceModal(item.color)}
                             title="Replace / swap this color in the pattern"
-                            className="p-1 rounded bg-amber-50 text-amber-900 border border-amber-300 hover:border-black transition-colors cursor-pointer"
+                            className="p-1 rounded bg-pink-50 text-pink-900 border border-pink-300 hover:border-pink-800 transition-colors cursor-pointer"
                           >
                             <RefreshCw className="w-3 h-3" />
                           </button>
@@ -530,43 +562,43 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
         </div>
 
         {/* Right Summary Metrics Card */}
-        <div className="w-full xl:w-80 border-t xl:border-t-0 xl:border-l border-black p-6 bg-gray-50 flex flex-col justify-between space-y-4">
+        <div className="w-full xl:w-80 border-t xl:border-t-0 xl:border-l border-pink-800 p-6 bg-rose-50 flex flex-col justify-between space-y-4">
           <div className="space-y-3">
-            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400">
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-pink-400">
               Project & Stock Summary
             </p>
 
-            <div className="flex justify-between text-xs font-bold text-black border-b border-black/10 pb-2">
+            <div className="flex justify-between text-xs font-bold text-pink-900 border-b border-pink-800/10 pb-2">
               <span className="uppercase tracking-wider">Active Brand</span>
               <span className="font-mono text-sm">
                 {BRAND_INFO[brand]?.name}
               </span>
             </div>
 
-            <div className="flex justify-between text-xs font-bold text-black border-b border-black/10 pb-2">
+            <div className="flex justify-between text-xs font-bold text-pink-900 border-b border-pink-800/10 pb-2">
               <span className="uppercase tracking-wider">Grid Dimensions</span>
               <span className="font-mono text-sm">
                 {grid.width} × {grid.height} pegs
               </span>
             </div>
 
-            <div className="flex justify-between text-xs font-bold text-black border-b border-black/10 pb-2">
+            <div className="flex justify-between text-xs font-bold text-pink-900 border-b border-pink-800/10 pb-2">
               <span className="uppercase tracking-wider">Total Pattern Beads</span>
               <span className="font-mono text-sm">{totalBeads.toLocaleString()}</span>
             </div>
 
-            <div className="flex justify-between text-xs font-bold text-black border-b border-black/10 pb-2">
+            <div className="flex justify-between text-xs font-bold text-pink-900 border-b border-pink-800/10 pb-2">
               <span className="uppercase tracking-wider">Color Palette</span>
               <span className="font-mono text-sm">{totalColors} shades</span>
             </div>
 
             {/* In-Stock Readiness */}
-            <div className="p-3 bg-white border border-black rounded-lg space-y-1.5 font-mono text-xs">
+            <div className="p-3 bg-white border border-pink-800 rounded-lg space-y-1.5 font-mono text-xs">
               <div className="flex justify-between font-bold">
                 <span>Inventory Readiness:</span>
                 <span
                   className={
-                    stockAnalysis.isFullyCovered ? 'text-emerald-700' : 'text-amber-700'
+                    stockAnalysis.isFullyCovered ? 'text-pink-700' : 'text-pink-700'
                   }
                 >
                   {stockAnalysis.isFullyCovered
@@ -574,7 +606,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
                     : `${stockAnalysis.deficitColorsCount} colors missing`}
                 </span>
               </div>
-              <div className="text-[10px] text-gray-600">
+              <div className="text-[10px] text-pink-600">
                 {stockAnalysis.isFullyCovered ? (
                   'You own all beads needed to build this pattern!'
                 ) : (
@@ -585,14 +617,14 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
               </div>
             </div>
 
-            <div className="flex justify-between text-xs text-gray-600 border-b border-black/10 pb-2">
+            <div className="flex justify-between text-xs text-pink-600 border-b border-pink-800/10 pb-2">
               <span className="uppercase tracking-wider text-[11px] font-bold">Pegboards (29×29)</span>
-              <span className="font-mono text-xs font-bold text-black">~{boardCount} {boardCount === 1 ? 'board' : 'boards'}</span>
+              <span className="font-mono text-xs font-bold text-pink-900">~{boardCount} {boardCount === 1 ? 'board' : 'boards'}</span>
             </div>
 
-            <div className="flex justify-between text-xs text-gray-600">
+            <div className="flex justify-between text-xs text-pink-600">
               <span className="uppercase tracking-wider text-[11px] font-bold">Estimated Cost</span>
-              <span className="font-mono text-xs font-bold text-black">${estimatedCost}</span>
+              <span className="font-mono text-xs font-bold text-pink-900">${estimatedCost}</span>
             </div>
           </div>
 
@@ -601,7 +633,7 @@ export const MaterialsList: React.FC<MaterialsListProps> = ({
               <button
                 type="button"
                 onClick={onOpenAssemblyModal}
-                className="w-full py-2 bg-black text-amber-300 hover:bg-neutral-800 rounded-lg text-xs font-mono font-bold uppercase transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+                className="w-full py-2 bg-pink-800 text-pink-300 hover:bg-pink-800 rounded-lg text-xs font-mono font-bold uppercase transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
               >
                 <Layers className="w-3.5 h-3.5" />
                 <span>Open 29×29 Assembly Guide</span>

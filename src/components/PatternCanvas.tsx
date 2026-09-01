@@ -81,9 +81,9 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
   const dragPlacementModeRef = useRef<boolean | null>(null);
 
   // View preferences
-  const [localShowGridLines, setLocalShowGridLines] = useState<boolean>(true);
-  const [localShowNumbers, setLocalShowNumbers] = useState<boolean>(true);
-  const [showColorCodes, setShowColorCodes] = useState<boolean>(true);
+  const [localShowGridLines, setLocalShowGridLines] = useState<boolean>(false);
+  const [localShowNumbers, setLocalShowNumbers] = useState<boolean>(false);
+  const [showColorCodes, setShowColorCodes] = useState<boolean>(false);
   const [showOriginalOverlay, setShowOriginalOverlay] = useState<boolean>(false);
 
   const showGridLines = propShowGridLines !== undefined ? propShowGridLines : localShowGridLines;
@@ -180,11 +180,11 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
 
     // Coordinate Numbers Ruler (Top & Left)
     if (showNumbers) {
-      ctx.fillStyle = '#F3F4F6';
+      ctx.fillStyle = '#fce7f3';
       ctx.fillRect(0, 0, totalW, numberMargin);
       ctx.fillRect(0, 0, numberMargin, totalH);
 
-      ctx.fillStyle = '#6B7280';
+      ctx.fillStyle = '#be185d';
       ctx.textBaseline = 'middle';
 
       // Top X coordinates
@@ -223,14 +223,14 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
 
         if (colorId === null || colorId === undefined) {
           // Empty pegboard peg
-          ctx.fillStyle = '#FAF9F6';
+          ctx.fillStyle = '#fdf2f8';
           ctx.fillRect(px, py, cellSize, cellSize);
 
           const cx = px + cellSize / 2;
           const cy = py + cellSize / 2;
           ctx.beginPath();
           ctx.arc(cx, cy, cellSize * 0.1, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
+          ctx.fillStyle = 'rgba(190, 24, 93, 0.12)';
           ctx.fill();
           continue;
         }
@@ -259,12 +259,12 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
 
         // Crafting Mode Placed Marker
         if (isCraftingMode && isPlaced) {
-          ctx.fillStyle = 'rgba(16, 185, 129, 0.35)';
+          ctx.fillStyle = 'rgba(236, 72, 153, 0.35)';
           ctx.fillRect(px, py, cellSize, cellSize);
 
           const cx = px + cellSize / 2;
           const cy = py + cellSize / 2;
-          ctx.fillStyle = '#059669';
+          ctx.fillStyle = '#ec4899';
           ctx.beginPath();
           ctx.arc(cx, cy, cellSize * 0.22, 0, Math.PI * 2);
           ctx.fill();
@@ -292,10 +292,10 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
         ctx.moveTo(px, numberMargin);
         ctx.lineTo(px, totalH);
         if (isPegboardBorder) {
-          ctx.strokeStyle = '#D97706'; // Amber pegboard board boundary
+          ctx.strokeStyle = '#be185d'; // Pink pegboard board boundary
           ctx.lineWidth = 2.0;
         } else {
-          ctx.strokeStyle = isMajor ? 'rgba(0, 0, 0, 0.45)' : 'rgba(0, 0, 0, 0.12)';
+          ctx.strokeStyle = isMajor ? 'rgba(190, 24, 93, 0.45)' : 'rgba(190, 24, 93, 0.12)';
           ctx.lineWidth = isMajor ? 1.2 : 0.5;
         }
         ctx.stroke();
@@ -309,10 +309,10 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
         ctx.moveTo(numberMargin, py);
         ctx.lineTo(totalW, py);
         if (isPegboardBorder) {
-          ctx.strokeStyle = '#D97706'; // Amber pegboard board boundary
+          ctx.strokeStyle = '#be185d'; // Pink pegboard board boundary
           ctx.lineWidth = 2.0;
         } else {
-          ctx.strokeStyle = isMajor ? 'rgba(0, 0, 0, 0.45)' : 'rgba(0, 0, 0, 0.12)';
+          ctx.strokeStyle = isMajor ? 'rgba(190, 24, 93, 0.45)' : 'rgba(190, 24, 93, 0.12)';
           ctx.lineWidth = isMajor ? 1.2 : 0.5;
         }
         ctx.stroke();
@@ -332,7 +332,7 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
         const bboxW = textPreviewBitmap.width * cellSize;
         const bboxH = textPreviewBitmap.height * cellSize;
 
-        ctx.strokeStyle = '#D97706';
+        ctx.strokeStyle = '#be185d';
         ctx.lineWidth = 1.5;
         ctx.setLineDash([4, 2]);
         ctx.strokeRect(bboxX, bboxY, bboxW, bboxH);
@@ -364,7 +364,7 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
       } else {
         const hx = numberMargin + hoverCoord.x * cellSize;
         const hy = numberMargin + hoverCoord.y * cellSize;
-        ctx.strokeStyle = isCraftingMode ? '#059669' : '#000000';
+        ctx.strokeStyle = isCraftingMode ? '#ec4899' : '#be185d';
         ctx.lineWidth = 2;
         ctx.strokeRect(hx, hy, cellSize, cellSize);
       }
@@ -532,7 +532,7 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative flex-1 h-full w-full bg-[#E5E5E5] overflow-hidden flex flex-col select-none"
+      className="relative max-w-4xl h-full w-full bg-[#E5E5E5] overflow-hidden flex flex-col select-none rounded-lg shadow-lg"
     >
       {/* Top Floating Viewport Toolbar */}
       <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
@@ -544,8 +544,8 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
             onClick={onToggleCraftingMode}
             className={`px-3 py-1.5 rounded-full border shadow-sm text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
               isCraftingMode
-                ? 'bg-emerald-600 border-emerald-700 text-white shadow-emerald-500/20 ring-2 ring-emerald-400'
-                : 'bg-white border-black/20 text-black hover:border-black'
+                ? 'bg-pink-600 border-pink-700 text-white shadow-pink-500/20 ring-2 ring-pink-400'
+                : 'bg-white border-pink-800/20 text-pink-900 hover:border-pink-800'
             }`}
           >
             <CheckCircle2 className="w-3.5 h-3.5" />
@@ -554,13 +554,13 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
         </div>
 
         {/* Right View & Zoom Controls */}
-        <div className="bg-white/95 border border-black/30 rounded-full px-3 py-1 shadow-md flex items-center gap-1 pointer-events-auto">
+        <div className="bg-white/95 border border-pink-800/30 rounded-full px-3 py-1 shadow-md flex items-center gap-1 pointer-events-auto">
           {/* Gridlines Toggle */}
           <button
             id="toggle-gridlines-btn"
             onClick={() => setShowGridLines((g) => !g)}
             className={`p-1.5 rounded-full transition-colors cursor-pointer ${
-              showGridLines ? 'bg-black text-white' : 'hover:bg-gray-100 text-gray-400'
+              showGridLines ? 'bg-pink-800 text-white' : 'hover:bg-rose-100 text-pink-400'
             }`}
             title="Toggle Grid Lines"
           >
@@ -572,7 +572,7 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
             id="toggle-bead-codes-btn"
             onClick={() => setShowColorCodes((c) => !c)}
             className={`p-1.5 rounded-full transition-colors cursor-pointer flex items-center gap-1 px-2 ${
-              showColorCodes ? 'bg-black text-white font-bold' : 'hover:bg-gray-100 text-gray-500'
+              showColorCodes ? 'bg-pink-800 text-white font-bold' : 'hover:bg-rose-100 text-pink-500'
             }`}
             title="Toggle Bead Code Labels on Cells (A1, H7, etc.)"
           >
@@ -585,7 +585,7 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
             id="toggle-numbers-btn"
             onClick={() => setShowNumbers((n) => !n)}
             className={`p-1.5 rounded-full transition-colors cursor-pointer ${
-              showNumbers ? 'bg-black text-white' : 'hover:bg-gray-100 text-gray-400'
+              showNumbers ? 'bg-pink-800 text-white' : 'hover:bg-rose-100 text-pink-400'
             }`}
             title="Toggle Row/Col Coordinates"
           >
@@ -599,8 +599,8 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
               onClick={() => setShowOriginalOverlay((o) => !o)}
               className={`p-1.5 rounded-full border transition-all cursor-pointer flex items-center gap-1 px-2.5 ${
                 showOriginalOverlay
-                  ? 'bg-black border-black text-white'
-                  : 'hover:bg-gray-100 border-black/30 text-black'
+                  ? 'bg-pink-800 border-pink-800 text-white'
+                  : 'hover:bg-rose-100 border-pink-800/30 text-pink-900'
               }`}
               title="Compare with Original Image"
             >
@@ -611,26 +611,26 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
             </button>
           )}
 
-          <div className="w-px h-3 bg-black/20 my-auto mx-1" />
+          <div className="w-px h-3 bg-pink-800/20 my-auto mx-1" />
 
           {/* Zoom Buttons */}
           <button
             id="zoom-out-btn"
             onClick={() => setZoom((z) => Math.max(0.3, z - 0.2))}
-            className="p-1.5 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+            className="p-1.5 hover:bg-rose-100 rounded-full transition-colors cursor-pointer"
             title="Zoom Out"
           >
             <ZoomOut className="w-3.5 h-3.5" />
           </button>
 
-          <span className="font-mono text-[10px] px-1 text-black font-bold w-10 text-center">
+          <span className="font-mono text-[10px] px-1 text-pink-900 font-bold w-10 text-center">
             {Math.round(zoom * 100)}%
           </span>
 
           <button
             id="zoom-in-btn"
             onClick={() => setZoom((z) => Math.min(3.5, z + 0.2))}
-            className="p-1.5 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+            className="p-1.5 hover:bg-rose-100 rounded-full transition-colors cursor-pointer"
             title="Zoom In"
           >
             <ZoomIn className="w-3.5 h-3.5" />
@@ -642,7 +642,7 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
               setZoom(1.0);
               setPan({ x: 0, y: 0 });
             }}
-            className="p-1.5 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+            className="p-1.5 hover:bg-rose-100 rounded-full transition-colors cursor-pointer"
             title="Reset Zoom & Pan"
           >
             <Maximize2 className="w-3.5 h-3.5" />
@@ -652,33 +652,33 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
 
       {/* Crafting Mode Progress Floating Ribbon */}
       {isCraftingMode && (
-        <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20 bg-white/95 border-2 border-emerald-600 rounded-xl px-4 py-2.5 shadow-xl flex items-center gap-4 text-xs font-mono">
+        <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20 bg-white/95 border-2 border-pink-600 rounded-xl px-4 py-2.5 shadow-xl flex items-center gap-4 text-xs font-mono">
           <div className="flex items-center gap-2">
-            <span className="text-emerald-700 font-bold uppercase">Crafting Progress:</span>
-            <span className="font-bold text-black">
+            <span className="text-pink-700 font-bold uppercase">Crafting Progress:</span>
+            <span className="font-bold text-pink-900">
               {totalPlacedCount} / {totalValidBeads} ({progressPercent}%)
             </span>
           </div>
 
-          <div className="w-32 bg-gray-200 h-2.5 rounded-full overflow-hidden border border-black/20">
+          <div className="w-32 bg-rose-200 h-2.5 rounded-full overflow-hidden border border-pink-800/20">
             <div
-              className="bg-emerald-500 h-full transition-all duration-200"
+              className="bg-pink-500 h-full transition-all duration-200"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
 
-          <div className="flex items-center gap-1.5 pl-2 border-l border-gray-200">
+          <div className="flex items-center gap-1.5 pl-2 border-l border-pink-200">
             <button
               id="mark-all-placed-btn"
               onClick={onMarkAllPlaced}
-              className="px-2 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded text-[10px] font-bold uppercase cursor-pointer"
+              className="px-2 py-1 bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-300 rounded text-[10px] font-bold uppercase cursor-pointer"
             >
               All Done
             </button>
             <button
               id="reset-crafting-progress-btn"
               onClick={onResetCraftingProgress}
-              className="p-1 hover:bg-gray-100 text-gray-500 hover:text-black rounded transition-colors cursor-pointer"
+              className="p-1 hover:bg-rose-100 text-pink-500 hover:text-pink-900 rounded transition-colors cursor-pointer"
               title="Reset Placement Progress"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -689,9 +689,9 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
 
       {/* Live Hover Bead Inspector Card (Bottom Left) */}
       {hoveredBead && (
-        <div className="absolute bottom-4 left-4 z-20 bg-white/95 border-2 border-black rounded-xl p-3 shadow-xl flex items-center gap-3 text-xs font-sans pointer-events-none">
+        <div className="absolute bottom-4 left-4 z-20 bg-white/95 border-2 border-pink-800 rounded-xl p-3 shadow-xl flex items-center gap-3 text-xs font-sans pointer-events-none">
           <div
-            className="w-9 h-9 rounded-lg border border-black shadow-xs flex items-center justify-center font-mono font-bold text-xs"
+            className="w-9 h-9 rounded-lg border border-pink-800 shadow-xs flex items-center justify-center font-mono font-bold text-xs"
             style={{
               backgroundColor: hoveredBead.bead.hex,
               color: (hoveredBead.bead.rgb[0] * 299 + hoveredBead.bead.rgb[1] * 587 + hoveredBead.bead.rgb[2] * 114) / 1000 < 135 ? '#fff' : '#000',
@@ -701,21 +701,21 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-black text-xs">
+              <span className="font-bold text-pink-900 text-xs">
                 {hoveredBead.bead.name}
               </span>
               {hoveredBead.bead.code && (
-                <span className="font-mono text-[10px] bg-black text-white px-1.5 py-0.2 rounded font-bold">
+                <span className="font-mono text-[10px] bg-pink-800 text-white px-1.5 py-0.2 rounded font-bold">
                   {hoveredBead.bead.code}
                 </span>
               )}
               {hoveredBead.bead.series && (
-                <span className="text-[9px] font-mono text-gray-600 bg-gray-100 px-1 py-0.2 rounded border border-gray-200">
+                <span className="text-[9px] font-mono text-pink-600 bg-rose-100 px-1 py-0.2 rounded border border-pink-200">
                   {hoveredBead.bead.series}
                 </span>
               )}
             </div>
-            <div className="flex items-center gap-3 text-[10px] font-mono text-gray-500 mt-0.5">
+            <div className="flex items-center gap-3 text-[10px] font-mono text-pink-500 mt-0.5">
               <span>Coord: ({hoveredBead.x + 1}, {hoveredBead.y + 1})</span>
               <span>•</span>
               <span>Used: {hoveredBead.count} beads</span>
@@ -750,7 +750,7 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
             transformOrigin: 'center center',
             transition: isPanning ? 'none' : 'transform 0.05s ease-out',
           }}
-          className="relative shadow-2xl border border-black/30 bg-white"
+          className="relative shadow-2xl border border-pink-800/30 bg-white"
         >
           {/* Main Drawing Canvas */}
           <canvas
@@ -775,7 +775,7 @@ export const PatternCanvas: React.FC<PatternCanvasProps> = ({
                 alt="Original source"
                 className="w-full h-full object-fill border border-dashed border-red-500"
               />
-              <div className="absolute top-2 left-2 bg-black/80 text-white px-2 py-0.5 rounded text-[10px] font-mono">
+              <div className="absolute top-2 left-2 bg-pink-800/80 text-white px-2 py-0.5 rounded text-[10px] font-mono">
                 ORIGINAL IMAGE PEEK
               </div>
             </div>

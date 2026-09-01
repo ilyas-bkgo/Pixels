@@ -125,8 +125,8 @@ export default function App() {
   const [historyIndex, setHistoryIndex] = useState<number>(0);
 
   // Lifted View Preferences (synchronized between on-screen canvas & exports)
-  const [showGridLines, setShowGridLines] = useState<boolean>(true);
-  const [showNumbers, setShowNumbers] = useState<boolean>(true);
+  const [showGridLines, setShowGridLines] = useState<boolean>(false);
+  const [showNumbers, setShowNumbers] = useState<boolean>(false);
 
   // Crafting Mode & Scoped Progress Tracker (scoped per image + dimensions + brand)
   const [isCraftingMode, setIsCraftingMode] = useState<boolean>(false);
@@ -504,7 +504,7 @@ export default function App() {
         {/* Right Content Area: Canvas (Top) & Materials List (Bottom) */}
         <main className="flex-1 flex flex-col h-full overflow-y-auto">
           {/* Pattern Canvas Container */}
-          <div className="h-[62vh] min-h-[400px] flex flex-col shrink-0">
+          <div className="h-[60vh] min-h-[350px] flex flex-col items-center justify-center shrink-0 bg-gradient-to-b from-rose-50 to-rose-50/50">
             <PatternCanvas
               grid={grid}
               activeImage={activeImage}
